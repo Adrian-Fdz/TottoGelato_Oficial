@@ -48,7 +48,7 @@ export default function Hero() {
           
           <div className="pt-2">
             <Link
-              href="#sabores-mes"
+              href="#sabores"
               className="inline-flex items-center justify-center rounded-full bg-[#690d0d] px-8 py-4 text-base font-bold text-totto-cream shadow-lg hover:bg-[#520909] hover:scale-105 active:scale-95 text-center transition-all border border-[#520909]"
             >
               Ver sabores del mes

@@ -122,22 +122,22 @@ export default function Footer() {
             <h4 className="text-white font-bold text-sm uppercase tracking-wider">Enlaces</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#sabores" className="hover:text-white transition-colors duration-200 block py-1">
+                <Link href="/#sabores" className="hover:text-white transition-colors duration-200 block py-1">
                   Sabores del Mes
                 </Link>
               </li>
               <li>
-                <Link href="#proceso" className="hover:text-white transition-colors duration-200 block py-1">
+                <Link href="/#proceso" className="hover:text-white transition-colors duration-200 block py-1">
                   Proceso Artesanal
                 </Link>
               </li>
               <li>
-                <Link href="#nosotros" className="hover:text-white transition-colors duration-200 block py-1">
+                <Link href="/nosotros" className="hover:text-white transition-colors duration-200 block py-1">
                   Nuestra Filosofía
                 </Link>
               </li>
               <li>
-                <Link href="#encuentranos" className="hover:text-white transition-colors duration-200 block py-1">
+                <Link href="/#encuentranos" className="hover:text-white transition-colors duration-200 block py-1">
                   Ubicación & Contacto
                 </Link>
               </li>

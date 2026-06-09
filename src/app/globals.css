@@ -23,6 +23,10 @@
   --animate-marquee-right: marquee-right 85s linear infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --background: #fafaf8;
   --foreground: #2e2c2c;

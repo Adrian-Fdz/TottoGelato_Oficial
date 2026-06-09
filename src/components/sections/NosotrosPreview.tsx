@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NosotrosPreview() {
   return (
     <section id="nosotros" className="py-20 bg-totto-white">
@@ -15,9 +17,17 @@ export default function NosotrosPreview() {
             <p className="text-lg text-totto-dark/85 leading-relaxed">
               Totto Gelato nació de la pasión por la heladería tradicional italiana y el deseo de traer su textura e intensidad de sabor a la Ciudad de México.
             </p>
-            <p className="text-base text-totto-dark/75 leading-relaxed">
-              No usamos bases prefabricadas ni saborizantes artificiales. Cada sabor se desarrolla de forma individual balanceando fruta de temporada mexicana con técnicas de mantecación artesanal para lograr un helado con menos aire y máxima cremosidad.
+            <p className="text-base text-totto-dark/70 leading-relaxed">
+              Elaboramos nuestro gelato diariamente en lotes pequeños, utilizando únicamente fruta fresca local e ingredientes seleccionados de alta calidad. No utilizamos bases industriales, saborizantes artificiales ni conservadores.
             </p>
+            <div className="pt-2">
+              <Link
+                href="/nosotros"
+                className="inline-flex items-center justify-center rounded-full bg-totto-red px-6 py-3 text-sm font-semibold text-totto-cream hover:bg-totto-red-light transition-all duration-200 hover:scale-105 active:scale-95 shadow-md"
+              >
+                Conoce nuestra historia →
+              </Link>
+            </div>
           </div>
 
           {/* RIGHT COLUMN: VALORES / CARACTERÍSTICAS */}
