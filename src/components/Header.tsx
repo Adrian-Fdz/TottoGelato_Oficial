@@ -20,20 +20,16 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-[#520909] bg-[#690d0d] transition-all">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-8">
         
-        {/* LOGO PLACEHOLDER */}
         <Link 
           href="/" 
-          className="flex items-center gap-2 group focus:outline-none"
+          className="flex items-center group focus:outline-none"
           aria-label="Totto Gelato Inicio"
         >
-          {/* Logo Icon/Mark placeholder */}
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-totto-cream text-totto-red font-bold text-xl shadow-md transition-transform group-hover:scale-105">
-            T
-          </div>
-          {/* Logo text placeholder */}
-          <span className="font-sans text-xl font-extrabold tracking-tight text-white sm:text-2xl">
-            Totto<span className="text-totto-cream">Gelato</span>
-          </span>
+          <img 
+            src="/images/LogoHeader.png" 
+            alt="Totto Gelato Logo" 
+            className="h-10 md:h-11 w-auto transition-transform duration-200 group-hover:scale-105"
+          />
         </Link>
 
         {/* DESKTOP NAVIGATION */}

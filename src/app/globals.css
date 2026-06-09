@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: var(--font-poppins), sans-serif;
+  --font-condensed: var(--font-oswald), sans-serif;
 
   --color-totto-red: #aa2323;
   --color-totto-red-dark: #8f1f1f;
@@ -16,6 +17,10 @@
   --color-totto-pistachio-light: #f1f6ef;
   --color-totto-hazelnut: #7c5c43;
   --color-totto-honey: #e2a347;
+
+  --animate-marquee: marquee 100s linear infinite;
+  --animate-marquee-left: marquee-left 85s linear infinite;
+  --animate-marquee-right: marquee-right 85s linear infinite;
 }
 
 :root {
@@ -33,5 +38,36 @@ body {
   background-image: radial-gradient(rgba(255, 250, 226, 0.12) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
 }
+
+/* Infinite marquee scroll animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+
 
 
