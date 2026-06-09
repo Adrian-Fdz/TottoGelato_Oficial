@@ -43,6 +43,14 @@ body {
   background-size: 24px 24px;
 }
 
+/* Artisanal waffle-cone crosshatch texture (brand red tint) */
+.bg-texture-waffle {
+  background-image: 
+    linear-gradient(45deg, rgba(170, 35, 35, 0.02) 25%, transparent 25%, transparent 75%, rgba(170, 35, 35, 0.02) 75%),
+    linear-gradient(-45deg, rgba(170, 35, 35, 0.02) 25%, transparent 25%, transparent 75%, rgba(170, 35, 35, 0.02) 75%);
+  background-size: 40px 40px;
+}
+
 /* Infinite marquee scroll animation */
 @keyframes marquee {
   0% {

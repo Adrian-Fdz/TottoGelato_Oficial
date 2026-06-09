@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function SaboresPreview() {
   return (
     <section id="sabores" className="py-20 bg-totto-cream-dark/15 border-t border-totto-red/10">
@@ -7,7 +9,7 @@ export default function SaboresPreview() {
             Nuestra Selección
           </span>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-totto-dark sm:text-4xl">
-            Sabores del Mes
+            Nuestros sabores
           </h2>
           <p className="mt-4 text-lg text-totto-dark/80">
             Gelatos elaborados diariamente en lotes pequeños con ingredientes frescos y recetas artesanales.
@@ -93,6 +95,17 @@ export default function SaboresPreview() {
             </div>
           </div>
         </div>
+
+        {/* Button to view complete catalog */}
+        <div className="mt-16 text-center">
+          <Link
+            href="/sabores"
+            className="inline-flex items-center justify-center rounded-full bg-[#690d0d] px-8 py-3.5 text-sm font-semibold text-totto-cream shadow-md hover:bg-[#520909] hover:scale-105 active:scale-95 transition-all duration-200"
+          >
+            Ver todos los sabores →
+          </Link>
+        </div>
+
       </div>
     </section>
   );

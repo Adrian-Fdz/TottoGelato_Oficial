@@ -18,9 +18,9 @@ export default function Galeria() {
   ];
 
   return (
-    <section id="galeria" className="py-20 bg-[#690d0d] border-t border-[#520909] relative overflow-hidden">
+    <section id="galeria" className="py-20 bg-gradient-to-br from-[#801414] via-[#690d0d] to-[#450505] border-t border-[#520909] relative overflow-hidden">
       {/* Subtle background texture grid */}
-      <div className="absolute inset-0 bg-texture opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-texture opacity-40 pointer-events-none" />
 
       <div className="relative z-10 w-full">
         
