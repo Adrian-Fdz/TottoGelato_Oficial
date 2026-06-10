@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Historia() {
   return (
-    <section className="mx-auto max-w-5xl px-6 md:px-8 py-20 relative z-10">
+    <section id="historia" className="mx-auto max-w-5xl px-6 md:px-8 py-20 relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div className="lg:col-span-7 space-y-6">

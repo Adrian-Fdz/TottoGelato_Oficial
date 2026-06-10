@@ -57,10 +57,9 @@ export default function Encuentranos() {
         {/* TWO COLUMNS (MAP AND INFO CARD) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-16">
           
-          {/* LEFT COLUMN: GOOGLE MAPS EMBED */}
           <div className="lg:col-span-6 h-[320px] md:h-auto min-h-[320px] rounded-3xl overflow-hidden border border-totto-red/10 shadow-md relative bg-white/50">
             <iframe
-              src="https://maps.google.com/maps?q=San%20Borja%201405,%20V%C3%A9rtiz%20Narvarte,%20CDMX&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Totto%20Gelato,%20San%20Borja%201405,%20V%C3%A9rtiz%20Narvarte,%20CDMX&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -124,7 +123,7 @@ export default function Encuentranos() {
               
               {/* CÓMO LLEGAR */}
               <a
-                href="https://maps.google.com/?q=San+Borja+1405+Vertiz+Narvarte+CDMX"
+                href="https://www.google.com/maps/place/totto+gelato/data=!4m2!3m1!1s0x85d1ff12d2602757:0x5594c11e6dae3397?sa=X&ved=1t:242&ictx=111"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-sky-300 bg-sky-50/50 p-3 text-center hover:bg-sky-100/50 hover:border-sky-400 transition-all duration-300 group focus:outline-none hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"

@@ -49,10 +49,10 @@ export default function Header() {
           
           {/* Prominent CTA */}
           <Link
-            href="/sabores"
+            href="/#sabores"
             className="ml-4 inline-flex items-center justify-center rounded-full bg-totto-cream px-5 py-2.5 text-sm font-semibold text-totto-red-dark shadow-md transition-all duration-200 hover:bg-white hover:scale-105 active:scale-95"
           >
-            Nuestros sabores
+            Sabores del Mes
           </Link>
         </nav>
 
@@ -117,11 +117,11 @@ export default function Header() {
           
           {/* Prominent CTA Mobile */}
           <Link
-            href="/sabores"
+            href="/#sabores"
             onClick={() => setIsMenuOpen(false)}
             className="mt-2 w-full text-center rounded-full bg-totto-cream px-5 py-3 text-sm font-semibold text-totto-red-dark shadow-md transition-colors hover:bg-white block"
           >
-            Nuestros sabores
+            Sabores del Mes
           </Link>
         </nav>
       </div>

@@ -204,7 +204,7 @@ export default function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
           <p>© {new Date().getFullYear()} Totto Gelato. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6">
-            <a href="https://maps.google.com/?q=San+Borja+1405+Vertiz+Narvarte+CDMX" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">
+            <a href="https://www.google.com/maps/place/totto+gelato/data=!4m2!3m1!1s0x85d1ff12d2602757:0x5594c11e6dae3397?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">
               📍 Google Maps
             </a>
             <a href="https://www.instagram.com/totto.gelato/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">
