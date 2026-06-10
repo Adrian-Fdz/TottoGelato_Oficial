@@ -6,14 +6,21 @@ export default function AboutHero() {
     <section className="relative bg-[#690d0d] text-totto-cream pt-8 pb-4 md:pt-12 md:pb-6 overflow-hidden border-b border-[#520909]">
       {/* Background texture */}
       <div className="absolute inset-0 bg-texture opacity-10 pointer-events-none"></div>
-      
+
+      {/* Botanical ornamental line art overlay */}
+      <img
+        src="/images/nosotros_hero_botanical.png"
+        alt="Ornamental botanical leaves"
+        className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none opacity-10 mix-blend-screen select-none z-0"
+      />
+
       {/* Main Container */}
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">
-        
+
         {/* Back Link */}
         <div className="mb-4">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-totto-cream/70 hover:text-white transition-colors group"
           >
             <span className="group-hover:-translate-x-1 transition-transform">←</span> VOLVER AL INICIO
@@ -22,24 +29,24 @@ export default function AboutHero() {
 
         {/* Two Columns Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          
+
           {/* LEFT COLUMN: Texts and Cards */}
           <div className="lg:col-span-7 space-y-3 md:space-y-4 flex flex-col items-start text-left">
             <span className="text-totto-cream-dark/60 font-bold uppercase tracking-[0.2em] text-xs block">
               NUESTRA HISTORIA Y PASIÓN
             </span>
-            
+
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-condensed text-white leading-[1.1]">
               De Florencia a la Narvarte
             </h1>
-            
+
             <p className="text-sm sm:text-base text-totto-cream/80 leading-relaxed font-light max-w-2xl">
               Conoce el origen, el método y la filosofía detrás del gelato más cremoso de la Ciudad de México. Una receta honesta que combina la técnica florentina con los mejores ingredientes locales.
             </p>
 
             {/* Three Cards Container */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full pt-4">
-              
+
               {/* Card 1 */}
               <div className="bg-white/5 border border-white/10 rounded-2xl p-3.5 flex flex-col justify-between space-y-3 hover:bg-white/8 transition-colors">
                 <div className="flex items-center gap-3">
@@ -93,7 +100,7 @@ export default function AboutHero() {
 
           {/* RIGHT COLUMN: Large Image Card with stamp */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-            
+
             {/* Dotted stamp badge */}
             <div className="absolute -top-6 left-6 lg:left-auto lg:-left-8 z-20 h-20 w-20 rounded-full overflow-hidden shadow-lg transform -rotate-12 select-none border border-white/10 bg-[#690d0d]">
               <Image

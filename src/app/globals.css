@@ -82,7 +82,7 @@ body {
 /* Custom Scrollbar Styles */
 html {
   scrollbar-width: thin;
-  scrollbar-color: #fbf7e6 #aa2323;
+  scrollbar-color: #fbf7e6 #690d0d;
 }
 
 ::-webkit-scrollbar {
@@ -91,13 +91,13 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #aa2323;
+  background: #690d0d;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #fbf7e6;
   border-radius: 10px;
-  border: 2px solid #aa2323;
+  border: 2px solid #690d0d;
 }
 
 ::-webkit-scrollbar-thumb:hover {

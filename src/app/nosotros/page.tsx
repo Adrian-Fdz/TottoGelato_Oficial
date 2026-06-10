@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import AboutHero from "@/components/sections/about/AboutHero";
 import Historia from "@/components/sections/about/Historia";
 import MetodoArtesanal from "@/components/sections/about/MetodoArtesanal";
@@ -12,15 +13,29 @@ export const metadata: Metadata = {
 
 export default function NosotrosPage() {
   return (
-    <main className="min-h-screen bg-[#fbf7e6] text-totto-dark pb-24 relative overflow-hidden">
-      {/* Texture background overlay */}
-      <div className="absolute inset-0 bg-texture opacity-[0.03] pointer-events-none z-0"></div>
-
+    <main className="min-h-screen bg-[#fbf7e6] text-totto-dark relative overflow-hidden">
       <AboutHero />
       <Historia />
       <MetodoArtesanal />
-      <MisionVisionValores />
-      <AboutCTA />
+
+      {/* Container with BackgorundAboutUS.png background */}
+      <div className="relative z-10 pb-24">
+        {/* Background image container */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0 opacity-40 select-none"
+          style={{
+            backgroundImage: "url('/images/BackgorundAboutUS.png')",
+            backgroundSize: "100% auto",
+            backgroundPosition: "top center",
+            backgroundRepeat: "no-repeat"
+          }}
+        />
+
+        <div className="relative z-10">
+          <MisionVisionValores />
+          <AboutCTA />
+        </div>
+      </div>
     </main>
   );
 }

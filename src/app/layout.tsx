@@ -19,6 +19,9 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   title: "Totto Gelato | Gelatería Artesanal en CDMX",
   description: "Descubre el auténtico gelato artesanal en CDMX. Sabores únicos hechos con ingredientes frescos y pasión. Visítanos en nuestra tienda física o contáctanos.",
+  icons: {
+    icon: "/FaviconTotto.svg",
+  },
 };
 
 export default function RootLayout({
