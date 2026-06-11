@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍦 Totto Gelato — Sitio Web Oficial
 
-## Getting Started
+Sitio web oficial de **Totto Gelato**, gelatería artesanal ubicada en la colonia Vértiz Narvarte, Ciudad de México. Gelato elaborado diariamente en lotes pequeños con frutas frescas mexicanas e ingredientes importados de Italia — sin aditivos, colorantes ni conservadores.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Características
+
+- **Catálogo de sabores** dinámico con categorías (Clásicos, Frutales, Especiales, Temporada) y filtros interactivos
+- **Timeline interactivo** del método artesanal en 4 fases con auto-rotación y progress bars
+- **Galería** con marquee infinito dual (scroll izquierda/derecha) y pausa al hover
+- **Testimonios** con sistema de rotación automática, selector de reseñas y estadísticas verificadas
+- **Sección Instagram** con mockup de teléfono, grid de publicaciones y hashtags flotantes animados
+- **Mapa y contacto** con integración de Google Maps, estado de apertura en tiempo real y accesos directos a WhatsApp
+- **Newsletter** con formulario reactivo y validación
+- **Scroll-to-top** dinámico con animación de entrada/salida
+- **Diseño responsive** optimizado para móvil, tablet y desktop
+- **Micro-animaciones** y transiciones suaves a lo largo de toda la experiencia
+
+## 🛠️ Stack Tecnológico
+
+| Tecnología | Uso |
+|---|---|
+| **Next.js 15** | Framework React con App Router y SSR |
+| **TypeScript** | Tipado estático |
+| **Tailwind CSS v4** | Estilos utilitarios y sistema de diseño |
+| **Oswald + Poppins** | Tipografía (Google Fonts via `next/font`) |
+| **next/image** | Optimización automática de imágenes |
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── page.tsx              # Página principal
+│   ├── nosotros/page.tsx     # Página "Nosotros"
+│   ├── sabores/page.tsx      # Catálogo de sabores
+│   ├── globals.css           # Variables de diseño y animaciones
+│   └── layout.tsx            # Layout raíz con Header/Footer
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx        # Navegación principal
+│   │   └── Footer.tsx        # Footer con newsletter y contacto
+│   └── sections/
+│       ├── Hero.tsx           # Hero principal con CTA
+│       ├── AnnouncementTicker.tsx # Ticker de anuncios
+│       ├── SaboresPreview.tsx # Preview de sabores destacados
+│       ├── Proceso.tsx        # Resumen del proceso artesanal
+│       ├── NosotrosPreview.tsx # Preview de la página Nosotros
+│       ├── Testimonios.tsx    # Reseñas con auto-rotación
+│       ├── Galeria.tsx        # Galería con marquee infinito
+│       ├── SocialInvite.tsx   # Sección Instagram
+│       ├── Encuentranos.tsx   # Mapa y contacto
+│       └── about/
+│           ├── AboutHero.tsx
+│           ├── Historia.tsx
+│           ├── MetodoArtesanal.tsx
+│           ├── MisionVisionValores.tsx
+│           └── AboutCTA.tsx
+└── public/images/             # Assets e imágenes
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Paleta de Marca
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Color | Hex | Uso |
+|---|---|---|
+| 🔴 Totto Red | `#aa2323` | Color primario, CTAs, acentos |
+| 🟡 Totto Cream | `#fffae2` | Fondos claros, texto sobre oscuro |
+| 🟤 Totto Dark | `#2e2c2c` | Texto principal, fondos oscuros |
+| 🟢 Pistachio | `#7d9770` | Acento verde, valores |
+| 🟠 Honey | `#e2a347` | Acento dorado, estrellas, badges |
+| 🫘 Hazelnut | `#7c5c43` | Acento cálido complementario |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+```bash
+# Instalar dependencias
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# Servidor de desarrollo
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build de producción
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-## Deploy on Vercel
+## 📍 Totto Gelato
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Dirección:** San Borja 1405, Col. Vértiz Narvarte, CDMX  
+**Horario:** Lun – Dom, 12:00 – 20:00  
+**Instagram:** [@totto.gelato](https://www.instagram.com/totto.gelato/)  
+**WhatsApp:** [55 8080 7417](https://wa.me/525580807417)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Hecho con ❤️ y pistache siciliano.
