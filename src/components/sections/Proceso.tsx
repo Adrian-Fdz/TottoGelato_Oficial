@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Proceso() {
   const pasos = [
     {
@@ -126,6 +128,19 @@ export default function Proceso() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Call to action to learn more */}
+        <div className="text-center mt-12 relative z-10">
+          <Link
+            href="/nosotros#metodo-artesanal"
+            className="inline-flex items-center gap-2 rounded-full bg-totto-red px-8 py-3.5 text-sm font-bold text-totto-cream hover:bg-totto-red-light transition-all duration-300 hover:scale-105 active:scale-95 shadow-md border border-totto-red/10"
+          >
+            Aprende más sobre nuestro método
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Link>
         </div>
 
       </div>

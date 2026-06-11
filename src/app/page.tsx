@@ -3,7 +3,9 @@ import AnnouncementTicker from "@/components/sections/AnnouncementTicker";
 import SaboresPreview from "@/components/sections/SaboresPreview";
 import Proceso from "@/components/sections/Proceso";
 import NosotrosPreview from "@/components/sections/NosotrosPreview";
+import Testimonios from "@/components/sections/Testimonios";
 import Galeria from "@/components/sections/Galeria";
+import SocialInvite from "@/components/sections/SocialInvite";
 import Encuentranos from "@/components/sections/Encuentranos";
 
 export default function Home() {
@@ -14,7 +16,9 @@ export default function Home() {
       <SaboresPreview />
       <Proceso />
       <NosotrosPreview />
+      <Testimonios />
       <Galeria />
+      <SocialInvite />
       <Encuentranos />
     </main>
   );

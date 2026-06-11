@@ -40,7 +40,7 @@ export default function AboutCTA() {
                 href="/#encuentranos"
                 className="inline-flex items-center justify-center rounded-full border border-white/20 hover:border-white px-8 py-3.5 text-sm font-bold text-totto-cream hover:bg-white/5 transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                📍 Cómo Llegar
+                Cómo Llegar
               </Link>
             </div>
           </div>
