@@ -7,17 +7,14 @@ import FlavorCard from "@/components/ui/FlavorCard";
 
 export default function SaboresCatalog() {
   const [activeFilter, setActiveFilter] = useState<"todos" | SaborTipo>("todos");
-  const [filteredSabores, setFilteredSabores] = useState<Sabor[]>(sabores);
   const [selectedSabor, setSelectedSabor] = useState<Sabor | null>(null);
 
-  // Run filter logic
-  useEffect(() => {
-    if (activeFilter === "todos") {
-      setFilteredSabores(sabores);
-    } else {
-      setFilteredSabores(sabores.filter((s) => s.tipo === activeFilter));
-    }
-  }, [activeFilter]);
+  // Derived during render: the list is a pure function of the active filter,
+  // so keeping it in state would only add a second render on every change.
+  const filteredSabores =
+    activeFilter === "todos"
+      ? sabores
+      : sabores.filter((s) => s.tipo === activeFilter);
 
   // Accessibility keyboard close for modal
   useEffect(() => {
@@ -30,6 +27,21 @@ export default function SaboresCatalog() {
       window.addEventListener("keydown", handleKeyDown);
     }
     return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedSabor]);
+
+  // The page behind an open modal must not scroll, and the card that
+  // opened it should get focus back when it closes.
+  useEffect(() => {
+    if (!selectedSabor) return;
+
+    const opener = document.activeElement as HTMLElement | null;
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = overflow;
+      opener?.focus?.();
+    };
   }, [selectedSabor]);
 
   const filters: { label: string; value: "todos" | SaborTipo }[] = [
@@ -48,7 +60,7 @@ export default function SaboresCatalog() {
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">
         
         {/* HEADER SECTION */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4" data-reveal>
           <span className="text-totto-red font-bold uppercase tracking-widest text-xs">
             Catálogo completo
           </span>
@@ -87,9 +99,8 @@ export default function SaboresCatalog() {
                   key={filter.value}
                   onClick={() => setActiveFilter(filter.value)}
                   role="tab"
-                  aria-pressed={isSelected}
                   aria-selected={isSelected}
-                  className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-totto-red/30 cursor-pointer ${
+                  className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full border transition-all duration-200 focus:ring-2 focus:ring-totto-red/30 cursor-pointer ${
                     isSelected
                       ? "bg-[#8f1f1f] text-white border-[#8f1f1f] shadow-sm hover:bg-[#7a1a1a]"
                       : "bg-white text-totto-dark/85 border-[#E5E5E5] hover:bg-gray-50 hover:border-totto-dark/20"
@@ -109,7 +120,10 @@ export default function SaboresCatalog() {
 
         {/* CATALOG GRID */}
         {filteredSabores.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div
+            key={activeFilter}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in"
+          >
             {filteredSabores.map((sabor) => (
               <FlavorCard
                 key={sabor.id}
@@ -133,7 +147,7 @@ export default function SaboresCatalog() {
       {/* ACCESSIBLE INGREDIENTS MODAL */}
       {selectedSabor && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -141,14 +155,14 @@ export default function SaboresCatalog() {
         >
           {/* Modal Card wrapper */}
           <div
-            className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-totto-red/5 max-w-2xl w-full max-h-[90vh] flex flex-col relative animate-fade-in"
+            className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-totto-red/5 max-w-2xl w-full max-h-[90vh] flex flex-col relative animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button absolute top right */}
             <button
               onClick={() => setSelectedSabor(null)}
               aria-label="Cerrar"
-              className="absolute top-5 right-5 z-20 h-10 w-10 flex items-center justify-center rounded-full bg-white/90 backdrop-blur shadow-md hover:bg-totto-red hover:text-totto-cream hover:scale-105 active:scale-95 text-totto-dark transition-all focus:outline-none cursor-pointer"
+              className="absolute top-5 right-5 z-20 h-10 w-10 flex items-center justify-center rounded-full bg-white/90 backdrop-blur shadow-md hover:bg-totto-red hover:text-totto-cream hover:scale-105 active:scale-95 text-totto-dark transition-all cursor-pointer"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

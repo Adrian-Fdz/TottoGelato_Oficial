@@ -44,7 +44,17 @@ export default function FlavorCard({ sabor, onClick }: FlavorCardProps) {
   return (
     <article
       onClick={() => onClick(sabor)}
-      className="group bg-white rounded-3xl p-5 border border-[#E5E5E5] hover:shadow-md hover:border-totto-red/10 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full relative"
+      onKeyDown={(event) => {
+        // The card is the control here, so it has to answer to the keyboard
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onClick(sabor);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Ver ingredientes de ${sabor.nombre}`}
+      className="group bg-white rounded-3xl p-5 border border-[#E5E5E5] hover:shadow-md hover:border-totto-red/10 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-[var(--duration-base)] ease-[var(--ease-out-soft)] cursor-pointer flex flex-col justify-between h-full relative"
     >
       <div>
         {/* Badges Container (Absolute top-8 left-8) */}

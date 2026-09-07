@@ -91,7 +91,7 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 **Dirección:** San Borja 1405, Col. Vértiz Narvarte, CDMX  
 **Horario:** Lun – Dom, 12:00 – 20:00  
 **Instagram:** [@totto.gelato](https://www.instagram.com/totto.gelato/)  
-**WhatsApp:** [55 8080 7417](https://wa.me/525580807417)
+**WhatsApp:** [55 2890 6616](https://wa.me/525528906616)
 
 ---
 

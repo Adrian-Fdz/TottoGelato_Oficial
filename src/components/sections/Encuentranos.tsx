@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useState, useEffect } from "react";
 
 export default function Encuentranos() {
@@ -35,14 +37,14 @@ export default function Encuentranos() {
   }, []);
 
   return (
-    <section id="encuentranos" className="py-24 bg-[#fbf7e6] text-totto-dark overflow-hidden relative">
+    <section id="encuentranos" className="snap-section py-24 bg-[#fbf7e6] text-totto-dark overflow-hidden relative">
       {/* Texture background overlay */}
       <div className="absolute inset-0 bg-texture opacity-10 pointer-events-none"></div>
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">
         
         {/* HEADER */}
-        <div className="text-center space-y-3 mb-16">
+        <div className="text-center space-y-3 mb-16" data-reveal>
           <span className="text-totto-red font-bold uppercase tracking-[0.2em] text-[11px] sm:text-xs block">
             COLONIA VÉRTIZ NARVARTE · CDMX
           </span>
@@ -55,7 +57,7 @@ export default function Encuentranos() {
         </div>
 
         {/* TWO COLUMNS (MAP AND INFO CARD) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mb-16" data-reveal-stagger>
           
           <div className="lg:col-span-6 h-[320px] md:h-auto min-h-[320px] rounded-3xl overflow-hidden border border-totto-red/10 shadow-md relative bg-white/50">
             <iframe
@@ -126,7 +128,7 @@ export default function Encuentranos() {
                 href="https://www.google.com/maps/place/totto+gelato/data=!4m2!3m1!1s0x85d1ff12d2602757:0x5594c11e6dae3397?sa=X&ved=1t:242&ictx=111"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-sky-300 bg-sky-50/50 p-3 text-center hover:bg-sky-100/50 hover:border-sky-400 transition-all duration-300 group focus:outline-none hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
+                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-sky-300 bg-sky-50/50 p-3 text-center hover:bg-sky-100/50 hover:border-sky-400 transition-all duration-300 group hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
               >
                 <div className="text-sky-600 group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -141,10 +143,10 @@ export default function Encuentranos() {
 
               {/* WHATSAPP */}
               <a
-                href="https://wa.me/525580807417?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Totto%20Gelato"
+                href="https://wa.me/525528906616?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20Totto%20Gelato"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50/30 p-3 text-center hover:bg-gray-100/40 hover:border-gray-300 transition-all duration-300 group focus:outline-none hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
+                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50/30 p-3 text-center hover:bg-gray-100/40 hover:border-gray-300 transition-all duration-300 group hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
               >
                 <div className="text-emerald-600 group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -161,7 +163,7 @@ export default function Encuentranos() {
                 href="https://www.instagram.com/totto.gelato/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50/30 p-3 text-center hover:bg-gray-100/40 hover:border-gray-300 transition-all duration-300 group focus:outline-none hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
+                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50/30 p-3 text-center hover:bg-gray-100/40 hover:border-gray-300 transition-all duration-300 group hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
               >
                 <div className="text-pink-600 group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -177,8 +179,8 @@ export default function Encuentranos() {
 
               {/* LLAMAR */}
               <a
-                href="tel:+525580807417"
-                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50/30 p-3 text-center hover:bg-gray-100/40 hover:border-gray-300 transition-all duration-300 group focus:outline-none hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
+                href="tel:+525528906616"
+                className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-gray-50/30 p-3 text-center hover:bg-gray-100/40 hover:border-gray-300 transition-all duration-300 group hover:scale-[1.03] active:scale-[0.97] min-h-[84px]"
               >
                 <div className="text-totto-red group-hover:scale-110 transition-transform">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -196,15 +198,17 @@ export default function Encuentranos() {
         </div>
 
         {/* ASYMMETRIC EDITORIAL IMAGE GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8" data-reveal-stagger>
           
           {/* Main Wide Image (Facade) */}
           <div className="md:col-span-2 overflow-hidden rounded-3xl h-64 md:h-[400px] relative group border border-white/5 shadow-md">
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 z-10"></div>
-            <img
-              src="/images/local_fachada.png"
+            <Image
+              src="/images/local_fachada.webp"
               alt="Fachada de Totto Gelato en CDMX"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
+              className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
             />
             <div className="absolute bottom-6 left-6 z-20">
               <span className="inline-flex items-center rounded-full bg-totto-red px-3 py-1 text-xs font-bold text-totto-cream shadow">
@@ -218,10 +222,12 @@ export default function Encuentranos() {
             
             <div className="overflow-hidden rounded-3xl relative group border border-white/5 shadow-md">
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-60 z-10"></div>
-              <img
-                src="/images/local_interior.png"
+              <Image
+                src="/images/local_interior.webp"
                 alt="Interior y vitrina de Totto Gelato"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                sizes="(min-width: 768px) 30vw, 100vw"
+                className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 z-20">
                 <span className="inline-flex items-center rounded-full bg-totto-dark/70 backdrop-blur px-2.5 py-0.5 text-[10px] font-bold text-white shadow">
@@ -232,10 +238,12 @@ export default function Encuentranos() {
 
             <div className="overflow-hidden rounded-3xl relative group border border-white/5 shadow-md">
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-60 z-10"></div>
-              <img
-                src="/images/local_gelato_detail.png"
+              <Image
+                src="/images/local_gelato_detail.webp"
                 alt="Detalle de Gelato en Copa"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                sizes="(min-width: 768px) 30vw, 100vw"
+                className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 z-20">
                 <span className="inline-flex items-center rounded-full bg-totto-dark/70 backdrop-blur px-2.5 py-0.5 text-[10px] font-bold text-white shadow">

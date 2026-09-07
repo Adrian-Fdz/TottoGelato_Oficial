@@ -1,0 +1,206 @@
+================================================================================
+GUÍA DE IMÁGENES Y REEMPLAZO DE PLACEHOLDERS — TOTTO GELATO
+================================================================================
+
+Este documento contiene el listado de todas las imágenes que se deben proporcionar
+para reemplazar los placeholders actuales en el sitio web de Totto Gelato,
+junto con sus dimensiones, relación de aspecto y ubicación en el código.
+
+--------------------------------------------------------------------------------
+0. FORMATO: TODO EL SITIO USA WEBP
+--------------------------------------------------------------------------------
+Todas las imágenes del sitio se sirven en formato WebP. Los PNG originales se
+conservan sin modificar en /public/images/originals/ (misma estructura de
+carpetas), por si en el futuro hace falta reexportar.
+
+Al añadir una imagen nueva:
+  1. Guarda el original PNG/JPG en /public/images/originals/
+  2. Convierte a WebP (calidad ~82) y guarda el resultado en /public/images/
+  3. Referencia SIEMPRE la ruta .webp desde el código
+  4. Usa el componente <Image> de next/image (no <img>), para que Next genere
+     los tamaños responsive y aplique carga diferida automáticamente
+
+--------------------------------------------------------------------------------
+1. IMÁGENES A MANTENER (NO REEMPLAZAR)
+--------------------------------------------------------------------------------
+Estas imágenes ya son las definitivas y NO deben eliminarse ni modificarse:
+- Hero (Desktop)         -> /public/images/Hero.webp   (Original: /public/images/originals/Hero.png)
+- Hero Mobile (Móvil)    -> /public/images/HeroMobile.webp (Original: /public/images/originals/HeroMobile.png)
+- Logo Header/Footer     -> /public/images/LogoHeader.webp
+- Totto Perfil (Perro)   -> /public/images/Totto-Perfil.webp
+
+--------------------------------------------------------------------------------
+2. GUÍA DE DIMENSIONES PARA NUEVOS SABORES (SECCIÓN SABORES)
+--------------------------------------------------------------------------------
+Para añadir un nuevo sabor en el futuro en `src/data/sabores.ts` o cambiar los actuales,
+las imágenes de los sabores deben cumplir estrictamente con los siguientes requisitos:
+
+- Relación de aspecto: 1:1 (Perfectamente Cuadrada)
+- Dimensión recomendada: 1000 x 1000 píxeles (Mínimo recomendado: 800 x 800 px)
+- Formato requerido: WebP (guarda el original PNG en /public/images/originals/sabores/)
+- Estilo visual: Foto del gelato en primer plano (close-up) servido en una tina,
+  copa o cono, con colores vibrantes alineados a los tonos del ingrediente, o
+  fotografía del ingrediente estrella con fondo liso de la marca (crema, rojo, etc.).
+- Comportamiento CSS: Se muestran en contenedores cuadrados con `object-cover`,
+  por lo que si la imagen no es cuadrada se recortará automáticamente por los lados.
+
+--------------------------------------------------------------------------------
+3. IMÁGENES PLACEHOLDERS A REEMPLAZAR
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+A. SECCIÓN DE SABORES (Tarjetas de Sabores y Catálogo)
+--------------------------------------------------------------------------------
+
+1. Pistache Siciliano
+   - Archivo actual: /public/images/sabores/Pistache.webp
+   - Dónde se usa: `src/data/sabores.ts` (Sabor: Pistache Siciliano, Vainilla de Papantla, Fior di Latte, Matcha Japonés)
+   - Qué es: Foto en plano medio o primer plano del gelato de pistache.
+   - Relación de aspecto: 1:1 (Cuadrada)
+   - Dimensión sugerida: 1000 x 1000 px
+
+2. Mango con Maracuyá
+   - Archivo actual: /public/images/sabores/Maracuya.webp
+   - Dónde se usa: `src/data/sabores.ts` (Sabor: Mango con Maracuyá, Fresa Silvestre, Limón con Albahaca, Coco Tostado)
+   - Qué es: Sorbete de fruta de color naranja/amarillo brillante, muy refrescante.
+   - Relación de aspecto: 1:1 (Cuadrada)
+   - Dimensión sugerida: 1000 x 1000 px
+
+3. Chocolate Belga 70%
+   - Archivo actual: /public/images/sabores/ChocolateBelga.webp
+   - Dónde se usa: `src/data/sabores.ts` (Sabor: Chocolate Belga 70%, Chocolate Blanco con Frambuesa, Chocolate Amargo con Menta, Avellana Piamonte)
+   - Qué es: Gelato espeso de chocolate oscuro, textura densa y cremosa.
+   - Relación de aspecto: 1:1 (Cuadrada)
+   - Dimensión sugerida: 1000 x 1000 px
+
+--------------------------------------------------------------------------------
+B. SECCIÓN PROCESO (Página Principal y Nosotros)
+--------------------------------------------------------------------------------
+
+4. Proceso - Paso 1: Pureza de Ingredientes (La Selección)
+   - Archivo actual: /public/images/proceso_ingredientes.webp
+   - Dónde se usa: `src/components/sections/Proceso.tsx` y `src/components/sections/about/MetodoArtesanal.tsx`
+   - Qué es: Foto artística que muestre frutas mexicanas frescas de temporada, pistaches o vainas de vainilla sobre una mesa de trabajo limpia.
+   - Relación de aspecto: 16:10 (Horizontal)
+   - Dimensión sugerida: 1600 x 1000 px (se adaptará a 4:3 por CSS en algunas vistas)
+
+5. Proceso - Paso 2: Balance y Formulación (El Equilibrio)
+   - Archivo actual: /public/images/proceso_mezcla.webp
+   - Dónde se usa: `src/components/sections/Proceso.tsx` y `src/components/sections/about/MetodoArtesanal.tsx`
+   - Qué es: Medición o mezcla de ingredientes en el laboratorio/taller (ej. verter leche, pesar ingredientes con balanza).
+   - Relación de aspecto: 16:10 (Horizontal)
+   - Dimensión sugerida: 1600 x 1000 px
+
+6. Proceso - Paso 3: Maduración en Frío (El Reposo)
+   - Archivo actual: /public/images/proceso_maduracion.webp
+   - Dónde se usa: `src/components/sections/Proceso.tsx` y `src/components/sections/about/MetodoArtesanal.tsx`
+   - Qué es: Envases o tinas de acero inoxidable con la base reposando en refrigeración a 4°C, o detalle de la base líquida reposando.
+   - Relación de aspecto: 16:10 (Horizontal)
+   - Dimensión sugerida: 1600 x 1000 px
+
+7. Proceso - Paso 4: Mantecación y Batido (La Textura)
+   - Archivo actual: /public/images/proceso_mantecacion.webp
+   - Dónde se usa: `src/components/sections/Proceso.tsx` y `src/components/sections/about/MetodoArtesanal.tsx`
+   - Qué es: El gelato saliendo cremoso y espeso de la mantecadora italiana de última generación.
+   - Relación de aspecto: 16:10 (Horizontal)
+   - Dimensión sugerida: 1600 x 1000 px
+
+8. Fondo del Proceso (Desktop)
+   - Archivo actual: /public/images/FondoGelato.webp
+   - Dónde se usa: `src/components/sections/Proceso.tsx` (como imagen de fondo sutil con opacidad reducida)
+   - Qué es: Patrón decorativo o foto desenfocada de gelato artesanal.
+   - Relación de aspecto: 16:9 / 16:10 (Horizontal panorámica)
+   - Dimensión sugerida: 1920 x 1080 px
+
+9. Fondo del Proceso (Móvil)
+   - Archivo actual: /public/images/FondoGelatoMB.webp
+   - Dónde se usa: `src/components/sections/Proceso.tsx` (como imagen de fondo sutil en móviles)
+   - Qué es: Foto desenfocada vertical de gelato o textura de tarrina de helado.
+   - Relación de aspecto: 9:16 (Vertical)
+   - Dimensión sugerida: 1080 x 1920 px
+
+--------------------------------------------------------------------------------
+C. SECCIÓN NOSOTROS (Historia, Valores y CTA)
+--------------------------------------------------------------------------------
+
+10. Fachada del Local
+    - Archivo actual: /public/images/local_fachada.webp
+    - Dónde se usa: `src/components/sections/about/MisionVisionValores.tsx`, `src/components/sections/Encuentranos.tsx` y `src/components/sections/SocialInvite.tsx`
+    - Qué es: Foto real de la fachada del local en la calle San Borja de la Narvarte, CDMX.
+    - Relación de aspecto: 16:10 (Horizontal)
+    - Dimensión sugerida: 1600 x 1000 px
+
+11. Interior de la Heladería (El Taller)
+    - Archivo actual: /public/images/local_interior.webp
+    - Dónde se usa: `src/components/sections/about/Historia.tsx` (como foto principal vertical), `src/components/sections/Encuentranos.tsx` y `src/components/sections/SocialInvite.tsx`
+    - Qué es: Foto vertical del interior de la heladería, mostrando la vitrina de gelatos o la calidez del taller.
+    - Relación de aspecto: 3:4 (Vertical)
+    - Dimensión sugerida: 900 x 1200 px (o mínimo 750 x 1000 px)
+
+12. Gelato de Calidad Artesanal (Detalle en Copa/Cono)
+    - Archivo actual: /public/images/local_gelato_detail.webp
+    - Dónde se usa: `src/components/sections/about/Historia.tsx`, `src/components/sections/about/AboutCTA.tsx` (CTA final) y `src/components/sections/Encuentranos.tsx`
+    - Qué es: Primer plano de alta definición de una copa o cono de gelato servido de forma artesanal, mostrando la textura cremosa.
+    - Relación de aspecto: 4:3 (Horizontal) o 1:1 (se adapta por CSS)
+    - Dimensión sugerida: 1200 x 900 px
+
+13. Cremosidad del Gelato (Usado en Visión)
+    - Archivo actual: /public/images/nosotros_hero_gelato.webp
+    - Dónde se usa: `src/components/sections/about/MisionVisionValores.tsx` (Card de Visión) y `src/components/sections/SocialInvite.tsx`
+    - Qué es: Primer plano estético de una tina de gelato cremoso o un vaso servido en el local.
+    - Relación de aspecto: 16:10 (Horizontal)
+    - Dimensión sugerida: 1600 x 1000 px
+
+14. Gelatos en Vitrina (Nosotros Hero)
+    - Archivo actual: /public/images/nosotros_hero_gelato_wide.webp
+    - Dónde se usa: `src/components/sections/about/AboutHero.tsx` (Imagen derecha de cabecera)
+    - Qué es: Foto horizontal con perspectiva amplia de los gelatos decorados en la vitrina del local.
+    - Relación de aspecto: 4:3 (Horizontal)
+    - Dimensión sugerida: 1200 x 900 px
+
+15. Sello Circular Florencia
+    - Archivo actual: /public/images/florencia_stamp_badge.webp
+    - Dónde se usa: `src/components/sections/about/AboutHero.tsx` (Sello redondo superpuesto en la imagen de cabecera)
+    - Qué es: Gráfico circular o logotipo tipo sello de agua que dice "Desde Florencia / Método Artesanal".
+    - Relación de aspecto: 1:1 (Cuadrada/Circular)
+    - Dimensión sugerida: 400 x 400 px (debe conservar el fondo transparente)
+
+16. Ilustración Botánica de Fondo (Cabecera Nosotros)
+    - Archivo actual: /public/images/nosotros_hero_botanical.webp
+    - Dónde se usa: `src/components/sections/about/AboutHero.tsx` (Patrón botánico lineal que se mezcla con el color de fondo)
+    - Qué es: Dibujo lineal vectorial (line art) blanco o transparente de hojas ornamentales.
+    - Relación de aspecto: Horizontal panorámica
+    - Dimensión sugerida: 1920 x 600 px (transparente, líneas blancas de baja opacidad)
+
+17. Fondo de la Página Nosotros
+    - Archivo actual: /public/images/BackgorundAboutUS.webp
+    - Dónde se usa: `src/app/nosotros/page.tsx` (Fondo ornamental suave para la mitad inferior de la página de Nosotros)
+    - Qué es: Ilustración decorativa abstracta o patrón de acuarela/línea muy suave y de baja opacidad.
+    - Relación de aspecto: Vertical / Grande
+    - Dimensión sugerida: 1920 x 2400 px (alta resolución para evitar pixelación)
+
+--------------------------------------------------------------------------------
+D. SECCIÓN REDES SOCIALES Y GALERÍA (Página Principal)
+--------------------------------------------------------------------------------
+
+18. Momentos / Clientes en el Local
+    - Archivo actual: /public/images/jj.webp
+    - Dónde se usa: `src/components/sections/SocialInvite.tsx` y `src/components/sections/Galeria.tsx`
+    - Qué es: Fotos espontáneas (lifestyle) de clientes sonriendo en la heladería, niños con gelato o interacción con Totto (el San Bernardo).
+    - Relación de aspecto: 1:1 (Cuadrada)
+    - Dimensión sugerida: 800 x 800 px
+
+19. Copa de Gelato Servido
+    - Archivo actual: /public/images/GelatoMain.webp
+    - Dónde se usa: `src/components/sections/SocialInvite.tsx` y `src/components/sections/Galeria.tsx`
+    - Qué es: Foto de una copa de helado con cuchara, o un primer plano de un cono servido en el local.
+    - Relación de aspecto: 1:1 (Cuadrada)
+    - Dimensión sugerida: 800 x 800 px
+
+20. Galería / Sabores de Temporada
+    - Archivo actual: /public/images/sabores/FlavorMock.webp
+    - Dónde se usa: `src/components/sections/Galeria.tsx`
+    - Qué es: Foto de sabores especiales de gelato decorados (ej. con toppings de fruta fresca o chocolate derretido).
+    - Relación de aspecto: 1:1 (Cuadrada)
+    - Dimensión sugerida: 800 x 800 px
+================================================================================

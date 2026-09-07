@@ -26,7 +26,7 @@ export const sabores: Sabor[] = [
     estado: null,
     etiquetas: [],
     tipo: "cremosos",
-    imagen: "/images/Pistache.png",
+    imagen: "/images/sabores/Pistache.webp",
     destacado: true,
   },
   {
@@ -38,7 +38,7 @@ export const sabores: Sabor[] = [
     estado: "temporal",
     etiquetas: [],
     tipo: "frutas",
-    imagen: "/images/Maracuya.png",
+    imagen: "/images/sabores/Maracuya.webp",
     destacado: true,
   },
   {
@@ -50,7 +50,7 @@ export const sabores: Sabor[] = [
     estado: "nuevo",
     etiquetas: [],
     tipo: "chocolate",
-    imagen: "/images/ChocolateBelga.png",
+    imagen: "/images/sabores/ChocolateBelga.webp",
     destacado: true,
   },
   {
@@ -62,7 +62,7 @@ export const sabores: Sabor[] = [
     estado: "nuevo",
     etiquetas: [],
     tipo: "cremosos",
-    imagen: "/images/Pistache.png",
+    imagen: "/images/sabores/Pistache.webp",
     destacado: false,
   },
   {
@@ -74,7 +74,7 @@ export const sabores: Sabor[] = [
     estado: "temporal",
     etiquetas: [],
     tipo: "cremosos",
-    imagen: "/images/Pistache.png",
+    imagen: "/images/sabores/Pistache.webp",
     destacado: false,
   },
   {
@@ -86,7 +86,7 @@ export const sabores: Sabor[] = [
     estado: "nuevo",
     etiquetas: [],
     tipo: "frutas",
-    imagen: "/images/Maracuya.png",
+    imagen: "/images/sabores/Maracuya.webp",
     destacado: false,
   },
   {
@@ -98,7 +98,7 @@ export const sabores: Sabor[] = [
     estado: null,
     etiquetas: [],
     tipo: "frutas",
-    imagen: "/images/Maracuya.png",
+    imagen: "/images/sabores/Maracuya.webp",
     destacado: false,
   },
   {
@@ -110,7 +110,7 @@ export const sabores: Sabor[] = [
     estado: "temporal",
     etiquetas: [],
     tipo: "chocolate",
-    imagen: "/images/ChocolateBelga.png",
+    imagen: "/images/sabores/ChocolateBelga.webp",
     destacado: false,
   },
   {
@@ -122,7 +122,7 @@ export const sabores: Sabor[] = [
     estado: null,
     etiquetas: [],
     tipo: "chocolate",
-    imagen: "/images/ChocolateBelga.png",
+    imagen: "/images/sabores/ChocolateBelga.webp",
     destacado: false,
   },
   {
@@ -134,7 +134,7 @@ export const sabores: Sabor[] = [
     estado: "nuevo",
     etiquetas: ["sin-azucar"],
     tipo: "sin-azucar",
-    imagen: "/images/Pistache.png",
+    imagen: "/images/sabores/Pistache.webp",
     destacado: false,
   },
   {
@@ -146,7 +146,7 @@ export const sabores: Sabor[] = [
     estado: "temporal",
     etiquetas: ["sin-azucar"],
     tipo: "sin-azucar",
-    imagen: "/images/Maracuya.png",
+    imagen: "/images/sabores/Maracuya.webp",
     destacado: false,
   },
   {
@@ -158,7 +158,7 @@ export const sabores: Sabor[] = [
     estado: null,
     etiquetas: ["sin-azucar"],
     tipo: "sin-azucar",
-    imagen: "/images/ChocolateBelga.png",
+    imagen: "/images/sabores/ChocolateBelga.webp",
     destacado: false,
   },
 ];

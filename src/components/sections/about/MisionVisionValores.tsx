@@ -2,16 +2,16 @@ import Image from "next/image";
 
 export default function MisionVisionValores() {
   return (
-    <section className="mx-auto max-w-5xl px-6 md:px-8 py-24 space-y-24 relative z-10">
+    <section className="snap-section mx-auto max-w-5xl px-6 md:px-8 py-24 space-y-24 relative z-10">
       
       {/* 1. MISIÓN Y VISIÓN GRID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10" data-reveal-stagger>
         
         {/* MISIÓN CARD */}
         <div className="bg-white rounded-[2.5rem] border border-totto-red/5 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group hover:-translate-y-1">
           <div className="relative w-full aspect-[16/10] overflow-hidden bg-totto-red/5">
             <Image
-              src="/images/local_fachada.png"
+              src="/images/local_fachada.webp"
               alt="Fachada del local de Totto Gelato"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -40,7 +40,7 @@ export default function MisionVisionValores() {
         <div className="bg-white rounded-[2.5rem] border border-totto-red/5 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group hover:-translate-y-1">
           <div className="relative w-full aspect-[16/10] overflow-hidden bg-totto-red/5">
             <Image
-              src="/images/nosotros_hero_gelato.png"
+              src="/images/nosotros_hero_gelato.webp"
               alt="Vaso de gelato cremoso Totto Gelato"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -71,7 +71,7 @@ export default function MisionVisionValores() {
       <div className="space-y-12">
         
         {/* Header de Valores */}
-        <div className="text-center max-w-xl mx-auto space-y-3">
+        <div className="text-center max-w-xl mx-auto space-y-3" data-reveal>
           <span className="text-totto-red font-bold uppercase tracking-[0.2em] text-xs">
             LO QUE NOS GUÍA
           </span>

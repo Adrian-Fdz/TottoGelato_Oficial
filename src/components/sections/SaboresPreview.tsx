@@ -1,10 +1,11 @@
-import Link from "next/link";
+import Image from "next/image";
+import Link from "@/components/ui/TransitionLink";
 
 export default function SaboresPreview() {
   return (
-    <section id="sabores" className="py-20 bg-totto-cream-dark/15 border-t border-totto-red/10">
+    <section id="sabores" className="snap-section py-20 bg-totto-cream-dark/15 border-t border-totto-red/10">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16" data-reveal>
           <span className="text-totto-red font-bold uppercase tracking-widest text-xs">
             Nuestra Selección
           </span>
@@ -16,7 +17,7 @@ export default function SaboresPreview() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
           {/* CARD 1: PISTACHE */}
           <div className="group bg-white rounded-3xl p-6 shadow-sm border border-totto-red/5 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] flex flex-col justify-between">
             <div>
@@ -27,10 +28,12 @@ export default function SaboresPreview() {
               </div>
               <h3 className="font-sans text-xl font-bold text-totto-dark mb-3">Pistache Siciliano</h3>
               <div className="relative w-full aspect-square overflow-hidden rounded-2xl mb-4 bg-totto-cream/30">
-                <img
-                  src="/images/Pistache.png"
-                  alt="Pistache Siciliano"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                <Image
+                  src="/images/sabores/Pistache.webp"
+                  alt="Gelato de Pistache Siciliano de Totto Gelato"
+                  fill
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                  className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
                 />
               </div>
               <p className="text-sm text-totto-dark/75 leading-relaxed">
@@ -53,10 +56,12 @@ export default function SaboresPreview() {
               </div>
               <h3 className="font-sans text-xl font-bold text-totto-dark mb-3">Mango con Maracuyá</h3>
               <div className="relative w-full aspect-square overflow-hidden rounded-2xl mb-4 bg-totto-cream/30">
-                <img
-                  src="/images/Maracuya.png"
-                  alt="Mango con Maracuyá"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                <Image
+                  src="/images/sabores/Maracuya.webp"
+                  alt="Gelato de Mango con Maracuyá de Totto Gelato"
+                  fill
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                  className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
                 />
               </div>
               <p className="text-sm text-totto-dark/75 leading-relaxed">
@@ -79,10 +84,12 @@ export default function SaboresPreview() {
               </div>
               <h3 className="font-sans text-xl font-bold text-totto-dark mb-3">Chocolate Belga 70%</h3>
               <div className="relative w-full aspect-square overflow-hidden rounded-2xl mb-4 bg-totto-cream/30">
-                <img
-                  src="/images/ChocolateBelga.png"
-                  alt="Chocolate Belga 70%"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                <Image
+                  src="/images/sabores/ChocolateBelga.webp"
+                  alt="Gelato de Chocolate Belga 70% de Totto Gelato"
+                  fill
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                  className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
                 />
               </div>
               <p className="text-sm text-totto-dark/75 leading-relaxed">
@@ -97,7 +104,7 @@ export default function SaboresPreview() {
         </div>
 
         {/* Button to view complete catalog */}
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center" data-reveal>
           <Link
             href="/sabores"
             className="inline-flex items-center justify-center rounded-full bg-[#690d0d] px-8 py-3.5 text-sm font-semibold text-totto-cream shadow-md hover:bg-[#520909] hover:scale-105 active:scale-95 transition-all duration-200"

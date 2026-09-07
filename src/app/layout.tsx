@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins, Oswald } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import PageTransition from "@/components/ui/PageTransition";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
   title: "Totto Gelato | Gelatería Artesanal en CDMX",
   description: "Descubre el auténtico gelato artesanal en CDMX. Sabores únicos hechos con ingredientes frescos y pasión. Visítanos en nuestra tienda física o contáctanos.",
   icons: {
-    icon: "/FaviconTotto.svg",
+    icon: "/FaviWebi.svg",
   },
 };
 
@@ -30,14 +32,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // "js-reveal" ships in the server-rendered markup instead of being added
+    // by a script before hydration. React owns this className, and mutating it
+    // early is exactly what caused the hydration mismatch. Rendering it here
+    // keeps server and client identical while still arming the scroll-reveal
+    // hidden state ahead of the first paint.
     <html
       lang="es"
-      className={`${poppins.variable} ${oswald.variable} h-full antialiased font-sans`}
+      className={`${poppins.variable} ${oswald.variable} h-full antialiased font-sans js-reveal`}
     >
       <body className="min-h-full flex flex-col">
+        {/*
+          With JS disabled the reveal observer never runs, so the hidden state
+          has to be lifted by markup that needs no JS at all.
+        */}
+        <noscript>
+          <style>{`[data-reveal],[data-reveal-stagger]>*{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        {/*
+          Safety net only: if ScrollReveal never reports ready (its bundle
+          failed to load), drop the class so the content shows up unanimated
+          instead of staying invisible. This fires long after hydration, so
+          touching the className here no longer risks a mismatch.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var r=document.documentElement;setTimeout(function(){" +
+              "if(!r.dataset.revealReady)r.classList.remove('js-reveal')},3000)}catch(e){}",
+          }}
+        />
         <Header />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
+        <ScrollReveal />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -45,10 +73,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "IceCreamShop",
               "name": "Totto Gelato",
-              "image": "https://tottogelato.mx/images/LogoHeader.png",
+              "image": "https://tottogelato.mx/images/LogoHeader.webp",
               "@id": "https://tottogelato.mx/#organization",
               "url": "https://tottogelato.mx",
-              "telephone": "+525580807417",
+              "telephone": "+525528906616",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "San Borja 1405, Vértiz Narvarte",

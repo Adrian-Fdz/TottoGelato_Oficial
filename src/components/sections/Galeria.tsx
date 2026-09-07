@@ -1,31 +1,65 @@
+import Image from "next/image";
+
+type GalleryItem = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export default function Galeria() {
-  const row1 = [
-    { src: "/images/FlavorMock.png", alt: "Gelato artesanal de la casa" },
-    { src: "/images/jj.png", alt: "Detalle de vasos y helado" },
-    { src: "/images/Hero.png", alt: "Local y ambiente Narvarte" },
-    { src: "/images/GelatoMain.webp", alt: "Copa de gelato servida" },
-    { src: "/images/FlavorMock.png", alt: "Sabores de temporada" },
-    { src: "/images/jj.png", alt: "Tradición Totto Gelato" }
+  const row1: GalleryItem[] = [
+    { src: "/images/sabores/FlavorMock.webp", alt: "Gelato artesanal de la casa", width: 1254, height: 1254 },
+    { src: "/images/jj.webp", alt: "Detalle de vasos y helado", width: 1122, height: 1402 },
+    { src: "/images/Hero.webp", alt: "Local y ambiente Narvarte", width: 1633, height: 700 },
+    { src: "/images/GelatoMain.webp", alt: "Copa de gelato servida", width: 1086, height: 1024 },
+    { src: "/images/sabores/FlavorMock.webp", alt: "Sabores de temporada", width: 1254, height: 1254 },
+    { src: "/images/jj.webp", alt: "Tradición Totto Gelato", width: 1122, height: 1402 }
   ];
 
-  const row2 = [
-    { src: "/images/jj.png", alt: "Nuestros productos e insumos" },
-    { src: "/images/GelatoMain.webp", alt: "Gelato de fruta 100% natural" },
-    { src: "/images/FlavorMock.png", alt: "Elaboración en la tienda" },
-    { src: "/images/Hero.png", alt: "Fachada e iluminación" },
-    { src: "/images/jj.png", alt: "Detalles y cucharas" },
-    { src: "/images/GelatoMain.webp", alt: "Tradición italiana" }
+  const row2: GalleryItem[] = [
+    { src: "/images/jj.webp", alt: "Nuestros productos e insumos", width: 1122, height: 1402 },
+    { src: "/images/GelatoMain.webp", alt: "Gelato de fruta 100% natural", width: 1086, height: 1024 },
+    { src: "/images/sabores/FlavorMock.webp", alt: "Elaboración en la tienda", width: 1254, height: 1254 },
+    { src: "/images/Hero.webp", alt: "Fachada e iluminación", width: 1633, height: 700 },
+    { src: "/images/jj.webp", alt: "Detalles y cucharas", width: 1122, height: 1402 },
+    { src: "/images/GelatoMain.webp", alt: "Tradición italiana", width: 1086, height: 1024 }
   ];
+
+  // Both marquee rows render each list twice so the loop is seamless. The
+  // duplicate copy is hidden from assistive tech and its images are decorative.
+  const renderRow = (
+    items: GalleryItem[],
+    rowKey: string,
+    sizeClasses: string,
+    duplicate: boolean
+  ) =>
+    items.map((item, idx) => (
+      <div
+        key={`${rowKey}-${idx}`}
+        className="group relative shrink-0 overflow-hidden rounded-3xl border border-[#520909] shadow-md transition-all duration-[var(--duration-base)] ease-[var(--ease-out-soft)] hover:border-totto-cream/30 hover:shadow-xl"
+      >
+        <Image
+          src={item.src}
+          alt={duplicate ? "" : item.alt}
+          aria-hidden={duplicate || undefined}
+          width={item.width}
+          height={item.height}
+          sizes="(min-width: 768px) 288px, 224px"
+          className={`${sizeClasses} w-auto object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105`}
+        />
+      </div>
+    ));
 
   return (
-    <section id="galeria" className="py-20 bg-gradient-to-br from-[#801414] via-[#690d0d] to-[#450505] border-t border-[#520909] relative overflow-hidden">
+    <section id="galeria" className="snap-section py-20 bg-gradient-to-br from-[#801414] via-[#690d0d] to-[#450505] border-t border-[#520909] relative overflow-hidden">
       {/* Subtle background texture grid */}
       <div className="absolute inset-0 bg-texture opacity-40 pointer-events-none" />
 
       <div className="relative z-10 w-full">
-        
+
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 px-6">
+        <div className="text-center max-w-3xl mx-auto mb-16 px-6" data-reveal>
           <span className="text-totto-cream font-bold uppercase tracking-widest text-xs">
             Galería
           </span>
@@ -39,39 +73,15 @@ export default function Galeria() {
 
         {/* Dual Marquee Container */}
         <div className="space-y-4">
-          
+
           {/* Row 1: Top Row - Taller - Scrolls Left */}
           <div className="w-full overflow-hidden select-none relative py-4">
             <div className="flex w-max flex-nowrap items-center animate-marquee-left hover:[animation-play-state:paused]">
-              {/* Copy 1 */}
               <div className="flex shrink-0 items-center gap-6 pr-6">
-                {row1.map((item, idx) => (
-                  <div 
-                    key={`row1-a-${idx}`} 
-                    className="relative group shrink-0 rounded-3xl overflow-hidden border border-[#520909] group-hover:border-totto-cream/30 shadow-md transition-all duration-300 cursor-pointer"
-                  >
-                    <img 
-                      src={item.src} 
-                      alt={item.alt} 
-                      className="h-56 md:h-72 w-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                ))}
+                {renderRow(row1, "row1-a", "h-56 md:h-72", false)}
               </div>
-              {/* Copy 2 (Seamless loop duplicate) */}
               <div className="flex shrink-0 items-center gap-6 pr-6" aria-hidden="true">
-                {row1.map((item, idx) => (
-                  <div 
-                    key={`row1-b-${idx}`} 
-                    className="relative group shrink-0 rounded-3xl overflow-hidden border border-[#520909] group-hover:border-totto-cream/30 shadow-md transition-all duration-300 cursor-pointer"
-                  >
-                    <img 
-                      src={item.src} 
-                      alt={item.alt} 
-                      className="h-56 md:h-72 w-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                ))}
+                {renderRow(row1, "row1-b", "h-56 md:h-72", true)}
               </div>
             </div>
           </div>
@@ -79,35 +89,11 @@ export default function Galeria() {
           {/* Row 2: Bottom Row - Shorter - Scrolls Right */}
           <div className="w-full overflow-hidden select-none relative py-4">
             <div className="flex w-max flex-nowrap items-center animate-marquee-right hover:[animation-play-state:paused]">
-              {/* Copy 1 */}
               <div className="flex shrink-0 items-center gap-6 pr-6">
-                {row2.map((item, idx) => (
-                  <div 
-                    key={`row2-a-${idx}`} 
-                    className="relative group shrink-0 rounded-3xl overflow-hidden border border-[#520909] group-hover:border-totto-cream/30 shadow-md transition-all duration-300 cursor-pointer"
-                  >
-                    <img 
-                      src={item.src} 
-                      alt={item.alt} 
-                      className="h-40 md:h-52 w-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                ))}
+                {renderRow(row2, "row2-a", "h-40 md:h-52", false)}
               </div>
-              {/* Copy 2 (Seamless loop duplicate) */}
               <div className="flex shrink-0 items-center gap-6 pr-6" aria-hidden="true">
-                {row2.map((item, idx) => (
-                  <div 
-                    key={`row2-b-${idx}`} 
-                    className="relative group shrink-0 rounded-3xl overflow-hidden border border-[#520909] group-hover:border-totto-cream/30 shadow-md transition-all duration-300 cursor-pointer"
-                  >
-                    <img 
-                      src={item.src} 
-                      alt={item.alt} 
-                      className="h-40 md:h-52 w-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                ))}
+                {renderRow(row2, "row2-b", "h-40 md:h-52", true)}
               </div>
             </div>
           </div>

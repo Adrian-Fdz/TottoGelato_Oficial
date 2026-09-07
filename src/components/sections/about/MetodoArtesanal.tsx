@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface Phase {
@@ -16,151 +16,146 @@ interface Phase {
   icon: React.ReactNode;
 }
 
+/* Static content, hoisted out of the component: the array identity stays
+   stable across renders and the icons are built only once. */
+const phases: Phase[] = [
+  {
+    id: 0,
+    phaseNumber: "01",
+    title: "Pureza de Ingredientes",
+    subtitle: "Fase 1: La Selección",
+    description:
+      "Utilizamos frutas frescas mexicanas directo de mercados locales en su punto perfecto de maduración. Para los sabores clásicos tradicionales, importamos ingredientes de origen como el pistache de Sicilia o cacao de alta selección. No agregamos saborizantes artificiales, colorantes ni conservadores.",
+    image: "/images/proceso_ingredientes.webp",
+    badge: "Insumos 100% naturales",
+    highlight1: "Cero aditivos",
+    highlight2: "Origen certificado",
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 22V12m0 0c-2-3-5.5-3-5.5-3S6 11.5 9 12.5m3-0.5c2-3 5.5-3 5.5-3s0.5 2.5-2.5 3.5" />
+      </svg>
+    ),
+  },
+  {
+    id: 1,
+    phaseNumber: "02",
+    title: "Balance y Formulación",
+    subtitle: "Fase 2: El Equilibrio",
+    description:
+      "Cada sabor es una fórmula matemática única. Equilibramos minuciosamente los sólidos lácteos, grasas y azúcares naturales para lograr un punto de congelación óptimo. Esto nos permite obtener una cremosidad excepcional sin utilizar estabilizantes químicos ni espesantes artificiales.",
+    image: "/images/proceso_mezcla.webp",
+    badge: "Formulación artesanal",
+    highlight1: "Receta propia",
+    highlight2: "Balance de sólidos",
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+      </svg>
+    ),
+  },
+  {
+    id: 2,
+    phaseNumber: "03",
+    title: "Maduración en Frío",
+    subtitle: "Fase 3: El Reposo",
+    description:
+      "Nuestras bases pasteurizadas reposan de 12 a 24 horas a 4°C. Este reposo en frío permite que las proteínas de la leche se hidraten y que los aromas naturales de los ingredientes se infundan de manera profunda y homogénea, logrando un sabor mucho más complejo y persistente.",
+    image: "/images/proceso_maduracion.webp",
+    badge: "Reposo lento a 4°C",
+    highlight1: "Hidratación óptima",
+    highlight2: "Sabor complejo",
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V12l3.5 2M12 2a10 10 0 100 20 10 10 0 000-20z" />
+      </svg>
+    ),
+  },
+  {
+    id: 3,
+    phaseNumber: "04",
+    title: "Mantecación y Batido",
+    subtitle: "Fase 4: La Textura",
+    description:
+      "Congelamos la mezcla mientras se bate lentamente en nuestra mantecadora italiana de última generación. Al girar despacio, inyectamos menos del 30% de aire (overrun) a diferencia del helado comercial que lleva hasta 80%. El resultado es un gelato extremadamente denso, sedoso y con un sabor intenso.",
+    image: "/images/proceso_mantecacion.webp",
+    badge: "Mantecación lenta",
+    highlight1: "Aire inferior al 30%",
+    highlight2: "Sedosidad y densidad",
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477A6 6 0 0012 3v18" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18" />
+      </svg>
+    ),
+  },
+];
+
+const STEP_DURATION = 10000; // 10 seconds per step
+
 export default function MetodoArtesanal() {
   const [activeStep, setActiveStep] = useState(0);
   const [displayedStep, setDisplayedStep] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const [progress, setProgress] = useState(0);
   
-  const autoPlayTimer = useRef<NodeJS.Timeout | null>(null);
-  const progressTimer = useRef<NodeJS.Timeout | null>(null);
-  const stepDuration = 10000; // 10 seconds per step
+  // Bumped whenever the autoplay cycle should start over — picking a step by
+  // hand restarts the countdown instead of dropping the user mid-interval.
+  const [cycle, setCycle] = useState(0);
 
-  const phases: Phase[] = [
-    {
-      id: 0,
-      phaseNumber: "01",
-      title: "Pureza de Ingredientes",
-      subtitle: "Fase 1: La Selección",
-      description:
-        "Utilizamos frutas frescas mexicanas directo de mercados locales en su punto perfecto de maduración. Para los sabores clásicos tradicionales, importamos ingredientes de origen como el pistache de Sicilia o cacao de alta selección. No agregamos saborizantes artificiales, colorantes ni conservadores.",
-      image: "/images/proceso_ingredientes.png",
-      badge: "Insumos 100% naturales",
-      highlight1: "Cero aditivos",
-      highlight2: "Origen certificado",
-      icon: (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 22V12m0 0c-2-3-5.5-3-5.5-3S6 11.5 9 12.5m3-0.5c2-3 5.5-3 5.5-3s0.5 2.5-2.5 3.5" />
-        </svg>
-      ),
-    },
-    {
-      id: 1,
-      phaseNumber: "02",
-      title: "Balance y Formulación",
-      subtitle: "Fase 2: El Equilibrio",
-      description:
-        "Cada sabor es una fórmula matemática única. Equilibramos minuciosamente los sólidos lácteos, grasas y azúcares naturales para lograr un punto de congelación óptimo. Esto nos permite obtener una cremosidad excepcional sin utilizar estabilizantes químicos ni espesantes artificiales.",
-      image: "/images/proceso_mezcla.png",
-      badge: "Formulación artesanal",
-      highlight1: "Receta propia",
-      highlight2: "Balance de sólidos",
-      icon: (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-        </svg>
-      ),
-    },
-    {
-      id: 2,
-      phaseNumber: "03",
-      title: "Maduración en Frío",
-      subtitle: "Fase 3: El Reposo",
-      description:
-        "Nuestras bases pasteurizadas reposan de 12 a 24 horas a 4°C. Este reposo en frío permite que las proteínas de la leche se hidraten y que los aromas naturales de los ingredientes se infundan de manera profunda y homogénea, logrando un sabor mucho más complejo y persistente.",
-      image: "/images/proceso_maduracion.png",
-      badge: "Reposo lento a 4°C",
-      highlight1: "Hidratación óptima",
-      highlight2: "Sabor complejo",
-      icon: (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V12l3.5 2M12 2a10 10 0 100 20 10 10 0 000-20z" />
-        </svg>
-      ),
-    },
-    {
-      id: 3,
-      phaseNumber: "04",
-      title: "Mantecación y Batido",
-      subtitle: "Fase 4: La Textura",
-      description:
-        "Congelamos la mezcla mientras se bate lentamente en nuestra mantecadora italiana de última generación. Al girar despacio, inyectamos menos del 30% de aire (overrun) a diferencia del helado comercial que lleva hasta 80%. El resultado es un gelato extremadamente denso, sedoso y con un sabor intenso.",
-      image: "/images/proceso_mantecacion.png",
-      badge: "Mantecación lenta",
-      highlight1: "Aire inferior al 30%",
-      highlight2: "Sedosidad y densidad",
-      icon: (
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477A6 6 0 0012 3v18" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18" />
-        </svg>
-      ),
-    },
-  ];
+  // The timers own themselves: they are created and torn down by the effect,
+  // and every state update happens inside an interval callback rather than in
+  // the effect body, so a render never cascades straight into another render.
+  useEffect(() => {
+    const fadeMs = 300;
+    const tickMs = 50;
+    const increment = (tickMs / STEP_DURATION) * 100;
+    let fadeTimeout: ReturnType<typeof setTimeout> | undefined;
 
-  const triggerNextStep = () => {
-    setIsFading(true);
-    setTimeout(() => {
-      setActiveStep((prev) => {
-        const next = (prev + 1) % phases.length;
-        setDisplayedStep(next);
-        return next;
-      });
-      setIsFading(false);
-      setProgress(0);
-    }, 300);
-  };
+    const autoPlay = setInterval(() => {
+      setIsFading(true);
+      fadeTimeout = setTimeout(() => {
+        setActiveStep((prev) => {
+          const next = (prev + 1) % phases.length;
+          setDisplayedStep(next);
+          return next;
+        });
+        setIsFading(false);
+        setProgress(0);
+      }, fadeMs);
+    }, STEP_DURATION);
 
-  const startTimers = () => {
-    stopTimers();
-    setProgress(0);
+    const progressTick = setInterval(() => {
+      setProgress((prev) => (prev >= 100 ? 0 : prev + increment));
+    }, tickMs);
 
-    // Auto-advance step timer
-    autoPlayTimer.current = setInterval(() => {
-      triggerNextStep();
-    }, stepDuration);
-
-    // Progress bar loader timer (runs every 50ms)
-    const intervalTime = 50;
-    const increment = (intervalTime / stepDuration) * 100;
-    progressTimer.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 0;
-        return prev + increment;
-      });
-    }, intervalTime);
-  };
-
-  const stopTimers = () => {
-    if (autoPlayTimer.current) clearInterval(autoPlayTimer.current);
-    if (progressTimer.current) clearInterval(progressTimer.current);
-  };
+    return () => {
+      clearInterval(autoPlay);
+      clearInterval(progressTick);
+      clearTimeout(fadeTimeout);
+    };
+  }, [cycle]);
 
   const selectStep = (index: number) => {
     if (index === activeStep) return;
     setIsFading(true);
-    stopTimers();
     setTimeout(() => {
       setActiveStep(index);
       setDisplayedStep(index);
       setIsFading(false);
-      startTimers();
+      setProgress(0);
+      // Re-running the effect is what restarts both timers
+      setCycle((c) => c + 1);
     }, 300);
   };
-
-  useEffect(() => {
-    startTimers();
-    return () => stopTimers();
-  }, []);
 
   const activePhase = phases[displayedStep];
 
   return (
-    <section id="metodo-artesanal" className="py-20 bg-white/60 backdrop-blur-sm border-y border-totto-red/5 relative z-10">
+    <section id="metodo-artesanal" className="snap-section py-20 bg-white/60 backdrop-blur-sm border-y border-totto-red/5 relative z-10">
       <div className="mx-auto max-w-5xl px-6 md:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-4" data-reveal>
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-totto-red/5 border border-totto-red/10">
             <span className="h-2 w-2 rounded-full bg-totto-red animate-pulse"></span>
             <span className="text-totto-red font-extrabold uppercase tracking-[0.2em] text-[10px] sm:text-xs">
@@ -196,7 +191,7 @@ export default function MetodoArtesanal() {
                 <button
                   key={phase.id}
                   onClick={() => selectStep(idx)}
-                  className="flex flex-col items-center group focus:outline-none relative w-20"
+                  className="flex flex-col items-center group relative w-20"
                 >
                   {/* Step Bubble */}
                   <div

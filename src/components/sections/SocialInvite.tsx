@@ -4,19 +4,19 @@ import Image from "next/image";
 
 export default function SocialInvite() {
   const posts = [
-    { src: "/images/Pistache.png", tag: "#PistacheSiciliano" },
-    { src: "/images/ChocolateBelga.png", tag: "#CacaoBelga" },
-    { src: "/images/Maracuya.png", tag: "#MaracuyáFresco" },
-    { src: "/images/local_fachada.png", tag: "#NuestroLocal" },
-    { src: "/images/jj.png", tag: "#TottoMoments" },
+    { src: "/images/sabores/Pistache.webp", tag: "#PistacheSiciliano" },
+    { src: "/images/sabores/ChocolateBelga.webp", tag: "#CacaoBelga" },
+    { src: "/images/sabores/Maracuya.webp", tag: "#MaracuyáFresco" },
+    { src: "/images/local_fachada.webp", tag: "#NuestroLocal" },
+    { src: "/images/jj.webp", tag: "#TottoMoments" },
     { src: "/images/GelatoMain.webp", tag: "#GelatoReal" },
-    { src: "/images/local_interior.png", tag: "#LaVitrina" },
-    { src: "/images/local_gelato_detail.png", tag: "#Artesanal" },
-    { src: "/images/nosotros_hero_gelato.png", tag: "#Cremosidad" },
+    { src: "/images/local_interior.webp", tag: "#LaVitrina" },
+    { src: "/images/local_gelato_detail.webp", tag: "#Artesanal" },
+    { src: "/images/nosotros_hero_gelato.webp", tag: "#Cremosidad" },
   ];
 
   return (
-    <section className="relative py-28 overflow-hidden">
+    <section className="snap-section relative py-28 overflow-hidden">
       {/* Warm cream background matching brand */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#fbf7e6] via-[#f8f0d4] to-[#fbf7e6]" />
 
@@ -33,7 +33,7 @@ export default function SocialInvite() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center mb-16">
           
           {/* Left: Content — takes 5 cols to push closer */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6" data-reveal="left">
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-totto-red/5 border border-totto-red/10">
               <span className="h-1.5 w-1.5 rounded-full bg-totto-red animate-pulse" />
               <span className="text-totto-red font-bold uppercase tracking-[0.25em] text-[9px] sm:text-[10px]">
@@ -100,7 +100,7 @@ export default function SocialInvite() {
           </div>
 
           {/* Right: Instagram-style phone mockup — takes 7 cols, bigger */}
-          <div className="lg:col-span-7 relative flex justify-center lg:justify-end">
+          <div className="lg:col-span-7 relative flex justify-center lg:justify-end" data-reveal="right">
             {/* Phone frame */}
             <div className="relative w-[320px] sm:w-[360px]">
               {/* Phone shell */}
@@ -132,7 +132,10 @@ export default function SocialInvite() {
                         <span className="text-[9px] text-gray-400">Gelato Artesanal · Narvarte</span>
                       </div>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white text-[10px] font-bold px-3.5 py-1.5 rounded-lg transition-colors">
+                    <button 
+                      suppressHydrationWarning 
+                      className="bg-blue-500 hover:bg-blue-600 text-white text-[10px] font-bold px-3.5 py-1.5 rounded-lg transition-colors"
+                    >
                       Seguir
                     </button>
                   </div>

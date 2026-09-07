@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Historia() {
   return (
-    <section id="historia" className="relative z-10 py-24 overflow-hidden border-t border-totto-red/5 bg-gradient-to-b from-transparent to-[#fdfbf2]">
+    <section id="historia" className="snap-section relative z-10 py-24 overflow-hidden border-t border-totto-red/5 bg-gradient-to-b from-transparent to-[#fdfbf2]">
       {/* Decorative Waffle Texture Accent */}
       <div className="absolute inset-0 bg-texture-waffle opacity-20 pointer-events-none"></div>
       
@@ -10,7 +10,7 @@ export default function Historia() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* TEXT COLUMN */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6" data-reveal="left">
             <div className="flex items-center gap-3">
               <span className="h-[1px] w-8 bg-totto-red"></span>
               <span className="text-totto-red font-bold uppercase tracking-[0.2em] text-xs">
@@ -37,14 +37,14 @@ export default function Historia() {
           </div>
 
           {/* DUAL IMAGE COLLAGE COLUMN */}
-          <div className="lg:col-span-5 relative mt-6 lg:mt-0">
+          <div className="lg:col-span-5 relative mt-6 lg:mt-0" data-reveal="right">
             {/* Background decorative square */}
             <div className="absolute -top-4 -right-4 w-72 h-72 rounded-3xl bg-totto-red/5 -z-10 border border-totto-red/5"></div>
             
             {/* Primary Image */}
             <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border border-totto-red/10 relative group bg-white/40">
               <Image
-                src="/images/local_interior.png"
+                src="/images/local_interior.webp"
                 alt="Interior de Totto Gelato"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -60,7 +60,7 @@ export default function Historia() {
             {/* Secondary Overlapping Detail Image (Only visible on screens larger than mobile) */}
             <div className="absolute -bottom-8 -left-10 w-48 aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-[#fbf7e6] hidden sm:block group/detail">
               <Image
-                src="/images/local_gelato_detail.png"
+                src="/images/local_gelato_detail.webp"
                 alt="Detalle de Gelato Artesanal"
                 fill
                 className="object-cover transition-transform duration-700 group-hover/detail:scale-110"

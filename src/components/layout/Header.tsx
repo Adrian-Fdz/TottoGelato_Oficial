@@ -1,14 +1,27 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "@/components/ui/TransitionLink";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Lift the bar off the page once the user leaves the top, so the sticky
+  // header reads as floating above the content instead of sitting in it.
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
     { href: "/sabores", label: "Nuestros sabores" },
@@ -17,18 +30,27 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#520909] bg-[#690d0d] transition-all">
+    <header
+      className={`sticky top-0 z-50 w-full border-b border-[#520909] bg-[#690d0d] transition-shadow duration-[var(--duration-base)] ease-[var(--ease-out-soft)] ${
+        isScrolled ? "shadow-lg shadow-black/25" : "shadow-none"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-8">
         
-        <Link 
-          href="/" 
-          className="flex items-center group focus:outline-none"
+        <Link
+          href="/"
+          onClick={() => setIsMenuOpen(false)}
+          className="flex items-center group"
           aria-label="Totto Gelato Inicio"
         >
-          <img 
-            src="/images/LogoHeader.png" 
-            alt="Totto Gelato Logo" 
-            className="h-10 md:h-11 w-auto transition-transform duration-200 group-hover:scale-105"
+          <Image
+            src="/images/LogoHeader.webp"
+            alt="Totto Gelato"
+            width={1800}
+            height={1200}
+            priority
+            sizes="(min-width: 768px) 66px, 60px"
+            className="h-10 md:h-11 w-auto transition-transform duration-[var(--duration-base)] ease-[var(--ease-out-soft)] group-hover:scale-105"
           />
         </Link>
 
@@ -39,7 +61,12 @@ export default function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="font-medium text-totto-cream/90 hover:text-white transition-colors duration-200 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-totto-cream after:transition-all hover:after:w-full"
+                  aria-current={pathname === link.href ? "page" : undefined}
+                  className={`font-medium transition-colors duration-[var(--duration-base)] relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-totto-cream after:transition-[width] after:duration-[var(--duration-base)] after:ease-[var(--ease-out-soft)] hover:text-white hover:after:w-full ${
+                    pathname === link.href
+                      ? "text-white after:w-full"
+                      : "text-totto-cream/90 after:w-0"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -60,7 +87,7 @@ export default function Header() {
         <button
           onClick={toggleMenu}
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-totto-cream hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-totto-cream lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-totto-cream hover:bg-white/10 focus:ring-2 focus:ring-totto-cream lg:hidden"
           aria-controls="mobile-menu"
           aria-expanded={isMenuOpen}
           aria-label="Alternar menú de navegación"
@@ -94,10 +121,10 @@ export default function Header() {
       {/* MOBILE NAVIGATION DRAWER */}
       <div
         id="mobile-menu"
-        className={`lg:hidden transition-all duration-300 ease-in-out border-t border-[#520909] ${
-          isMenuOpen 
-            ? "max-h-[300px] opacity-100 py-4 bg-[#690d0d]" 
-            : "max-h-0 opacity-0 overflow-hidden"
+        className={`lg:hidden overflow-hidden border-t border-[#520909] transition-all duration-[var(--duration-slow)] ease-[var(--ease-out-soft)] ${
+          isMenuOpen
+            ? "max-h-[320px] opacity-100 py-4 bg-[#690d0d]"
+            : "invisible max-h-0 opacity-0"
         }`}
       >
         <nav className="flex flex-col gap-4 px-6">

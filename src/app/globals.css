@@ -21,6 +21,11 @@
   --animate-marquee: marquee 100s linear infinite;
   --animate-marquee-left: marquee-left 85s linear infinite;
   --animate-marquee-right: marquee-right 85s linear infinite;
+
+  /* Used by form feedback, status pills and the ingredients modal */
+  --animate-fade-in: fade-in 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-scale-in: scale-in 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shake: shake 400ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 html {
@@ -70,6 +75,36 @@ body {
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Modals grow out of the backdrop rather than appearing flat */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
 @keyframes marquee-right {
   0% {
     transform: translateX(-50%);
@@ -102,4 +137,257 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #fffae2;
+}
+
+/* ============================================================
+   MOTION SYSTEM
+   Shared tokens so every transition on the site shares one
+   rhythm. Durations follow the 150-300ms micro-interaction
+   range; route changes get a slightly longer 400ms arc.
+   ============================================================ */
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --duration-reveal: 700ms;
+
+  /* Gentle deceleration for things entering the screen */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Symmetric curve for elements travelling across the viewport */
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Sticky header height, used for scroll offsets */
+  --header-offset: 5.5rem;
+}
+
+/* ============================================================
+   SCROLL BEHAVIOUR
+   Sections snap to the top of the viewport, just under the header.
+
+   Why "mandatory" is safe here even though several sections are taller
+   than the screen: per spec, when a snap area is larger than the
+   snapport, *every* scroll position in which that area still covers the
+   snapport is a valid snap position. So inside a long section the user
+   scrolls freely; the snap only bites at the boundary between sections.
+   The one thing mandatory needs is a reachable snap point at the very
+   bottom of the page, which is what .snap-end on the footer provides.
+   ============================================================ */
+/* One offset, defined once on the scroll container. It shrinks the snapport
+   for scroll-snap AND offsets anchor jumps / scrollIntoView, so the sections
+   must NOT also carry scroll-margin-top — that would apply it twice and park
+   every section a header-height too low. */
+html {
+  scroll-padding-top: var(--header-offset);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* data-snap is set per route by PageTransition: only pages actually built
+     out of sections snap. The flavour catalog is one long grid, and with
+     nothing to snap to along the way "mandatory" would drag the reader
+     straight to the footer. */
+  html[data-snap="sections"] {
+    scroll-snap-type: y proximity;
+  }
+
+  /* Sections opt in individually so tall content areas (the flavour catalog)
+     stay free-scrolling. Note the heroes deliberately do NOT opt in: the top
+     of the page is already a natural resting place, and a snap point there
+     only fights the very first scroll gesture. */
+  .snap-section {
+    scroll-snap-align: start;
+  }
+
+  /* The footer anchors to the bottom edge instead of the top, so the end
+     of the document is always a valid place to come to rest. */
+  .snap-end {
+    scroll-snap-align: end;
+  }
+
+  /*
+    What actually makes the sectioning felt is scroll-snap-stop, not a
+    stronger snap-type. "always" means one scroll gesture can never skate
+    past a section: a flick or a fast wheel spin lands on the next section
+    and stops there, so the page reads as a deck of panels.
+
+    "mandatory" was tried here and is wrong for this layout: the sections
+    are only slightly taller than the viewport, so a snap point has almost
+    no free range, and a small gesture (one wheel notch, ~120px) gets pulled
+    straight back to where it started — the page feels stuck. Proximity
+    keeps small movements free while still settling on a boundary.
+
+    Kept off touch: on a phone every section is far taller than the screen,
+    and stopping a flick fights the gesture people expect.
+  */
+  @media (pointer: fine) {
+    .snap-section {
+      scroll-snap-stop: always;
+    }
+  }
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   Elements marked [data-reveal] fade and rise into place the
+   first time they enter the viewport. The hidden state only
+   applies once the observer script has mounted (html.js-reveal)
+   so content is never trapped invisible without JS.
+   ============================================================ */
+html.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+}
+
+html.js-reveal [data-reveal="fade"] {
+  transform: none;
+}
+
+html.js-reveal [data-reveal="left"] {
+  transform: translateX(-28px);
+}
+
+html.js-reveal [data-reveal="right"] {
+  transform: translateX(28px);
+}
+
+html.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--duration-reveal) var(--ease-out-soft),
+    transform var(--duration-reveal) var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: auto;
+}
+
+/* Staggered children: each direct child trails the previous
+   one by 70ms, capped so long grids never feel sluggish. */
+html.js-reveal [data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+html.js-reveal [data-reveal-stagger].is-revealed > * {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--duration-reveal) var(--ease-out-soft),
+    transform var(--duration-reveal) var(--ease-out-soft);
+}
+
+html.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(1) { transition-delay: 0ms; }
+html.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(2) { transition-delay: 70ms; }
+html.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(3) { transition-delay: 140ms; }
+html.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(4) { transition-delay: 210ms; }
+html.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(5) { transition-delay: 280ms; }
+html.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(6) { transition-delay: 350ms; }
+html.js-reveal [data-reveal-stagger].is-revealed > *:nth-child(n + 7) { transition-delay: 420ms; }
+
+/* ============================================================
+   PAGE TRANSITIONS (route changes)
+   The shell fades out in the direction the user is leaving,
+   then the incoming page arrives from the opposite side, so
+   forward and back navigation never look identical.
+   `data-nav` is set on <html> by TransitionLink.
+   ============================================================ */
+.page-shell {
+  --page-offset: 0px;
+}
+
+html[data-nav="forward"] .page-shell {
+  --page-offset: 32px;
+}
+
+html[data-nav="back"] .page-shell {
+  --page-offset: -32px;
+}
+
+/* Arriving: slower and gentler, so the eye can follow it.
+   Only runs once a direction has been recorded, which keeps
+   the very first page load free of animation (and of LCP delay). */
+html[data-nav] .page-shell {
+  animation: page-enter var(--duration-slow) var(--ease-out-soft) both;
+}
+
+/* Leaving: short and quick, so it never delays the new page.
+   Declared after the enter rule on purpose — the two selectors have
+   equal specificity, so source order is what lets the exit win while
+   a navigation is in flight. */
+html.is-leaving .page-shell {
+  animation: page-exit var(--duration-fast) ease-in both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--page-offset), 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes page-exit {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(calc(var(--page-offset) * -0.5), 0, 0);
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   Strip positional movement and long-running loops. Content
+   still appears — it just arrives without travelling.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html.js-reveal [data-reveal],
+  html.js-reveal [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  html.is-leaving .page-shell,
+  html[data-nav] .page-shell {
+    animation: none !important;
+  }
+
+  .animate-marquee,
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
+  }
+
+  .animate-fade-in,
+  .animate-scale-in,
+  .animate-shake {
+    animation-duration: 1ms !important;
+  }
+}
+
+/* ============================================================
+   FOCUS VISIBILITY
+   Keyboard users get a consistent brand-coloured ring even on
+   the elements that suppress the default outline for mouse use.
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--color-totto-red);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* On the dark red header/footer the red ring would disappear */
+.on-dark :focus-visible,
+header :focus-visible,
+footer :focus-visible {
+  outline-color: var(--color-totto-cream);
 }

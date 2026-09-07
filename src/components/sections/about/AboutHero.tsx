@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/TransitionLink";
 import Image from "next/image";
 
 export default function AboutHero() {
@@ -8,10 +8,13 @@ export default function AboutHero() {
       <div className="absolute inset-0 bg-texture opacity-10 pointer-events-none"></div>
 
       {/* Botanical ornamental line art overlay */}
-      <img
-        src="/images/nosotros_hero_botanical.png"
-        alt="Ornamental botanical leaves"
-        className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none opacity-10 mix-blend-screen select-none z-0"
+      <Image
+        src="/images/nosotros_hero_botanical.webp"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="object-cover object-bottom pointer-events-none opacity-10 mix-blend-screen select-none z-0"
       />
 
       {/* Main Container */}
@@ -104,7 +107,7 @@ export default function AboutHero() {
             {/* Dotted stamp badge */}
             <div className="absolute -top-6 left-6 lg:left-auto lg:-left-8 z-20 h-20 w-20 rounded-full overflow-hidden shadow-lg transform -rotate-12 select-none border border-white/10 bg-[#690d0d]">
               <Image
-                src="/images/florencia_stamp_badge.png"
+                src="/images/florencia_stamp_badge.webp"
                 alt="Sello Desde Florencia Artesanal"
                 fill
                 className="object-cover"
@@ -115,7 +118,7 @@ export default function AboutHero() {
             {/* Image Wrapper */}
             <div className="relative w-full max-w-[360px] md:max-w-[420px] aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group bg-[#520909]/40">
               <Image
-                src="/images/nosotros_hero_gelato_wide.png"
+                src="/images/nosotros_hero_gelato_wide.webp"
                 alt="Gelatos artesanales en vitrina de Totto Gelato"
                 fill
                 priority
@@ -134,7 +137,7 @@ export default function AboutHero() {
         <div className="flex flex-col items-center justify-center pt-4 lg:pt-6 w-full text-center">
           <a
             href="#historia"
-            className="flex flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-totto-cream/50 hover:text-white transition-colors group focus:outline-none"
+            className="flex flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-totto-cream/50 hover:text-white transition-colors group"
           >
             <span className="flex items-center justify-center h-8 w-8 rounded-full border border-white/20 text-totto-cream/70 group-hover:border-white group-hover:text-white transition-all transform group-hover:translate-y-0.5">
               ↓

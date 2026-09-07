@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import AboutHero from "@/components/sections/about/AboutHero";
 import Historia from "@/components/sections/about/Historia";
 import MetodoArtesanal from "@/components/sections/about/MetodoArtesanal";
@@ -13,18 +12,21 @@ export const metadata: Metadata = {
 
 export default function NosotrosPage() {
   return (
-    <main className="min-h-screen bg-[#fbf7e6] text-totto-dark relative overflow-hidden">
+    <main className="min-h-screen bg-[#fbf7e6] text-totto-dark relative overflow-x-clip">
+      {/* overflow-x-clip, not overflow-hidden: "hidden" would turn <main> into a
+          scroll container, which detaches the sections from the page scroller and
+          breaks scroll snapping. "clip" crops without creating a scrollport. */}
       <AboutHero />
       <Historia />
       <MetodoArtesanal />
 
-      {/* Container with BackgorundAboutUS.png background */}
+      {/* Container with BackgorundAboutUS.webp background */}
       <div className="relative z-10 pb-24">
         {/* Background image container */}
         <div
           className="absolute inset-0 pointer-events-none z-0 opacity-40 select-none"
           style={{
-            backgroundImage: "url('/images/BackgorundAboutUS.png')",
+            backgroundImage: "url('/images/BackgorundAboutUS.webp')",
             backgroundSize: "100% auto",
             backgroundPosition: "top center",
             backgroundRepeat: "no-repeat"

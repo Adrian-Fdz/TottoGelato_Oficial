@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from "@/components/ui/TransitionLink";
 import Image from "next/image";
 
 export default function AboutCTA() {
   return (
-    <section className="mx-auto max-w-5xl px-6 md:px-8 pt-10 text-center md:text-left relative z-10">
+    <section className="snap-section mx-auto max-w-5xl px-6 md:px-8 pt-10 text-center md:text-left relative z-10">
       <div className="bg-gradient-to-br from-[#690d0d] via-[#5c0b0b] to-[#3a0606] text-totto-cream rounded-[2.5rem] p-8 md:p-12 border border-[#520909] shadow-2xl relative overflow-hidden group">
         
         {/* Background Texture & Light effect */}
@@ -13,7 +13,7 @@ export default function AboutCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
           
           {/* LEFT: Text & Buttons */}
-          <div className="lg:col-span-7 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="lg:col-span-7 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left" data-reveal="left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-totto-honey animate-pulse"></span>
               <span className="text-totto-cream font-bold uppercase tracking-widest text-[9px]">
@@ -46,10 +46,10 @@ export default function AboutCTA() {
           </div>
 
           {/* RIGHT: Image container */}
-          <div className="lg:col-span-5 hidden lg:block relative">
+          <div className="lg:col-span-5 hidden lg:block relative" data-reveal="right">
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/15 relative transform rotate-2 hover:rotate-0 transition-transform duration-500 bg-[#520909]/40 group-hover:scale-[1.02]">
               <Image
-                src="/images/local_gelato_detail.png"
+                src="/images/local_gelato_detail.webp"
                 alt="Gelato artesanal cremoso en vitrina"
                 fill
                 className="object-cover"

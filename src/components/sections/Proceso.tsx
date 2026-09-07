@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Image from "next/image";
+import Link from "@/components/ui/TransitionLink";
 
 export default function Proceso() {
   const pasos = [
@@ -6,7 +7,7 @@ export default function Proceso() {
       num: "01",
       title: "Selección de Ingredientes",
       desc: "Buscamos frutas frescas de temporada mexicana y materias primas de origen como el pistache siciliano.",
-      img: "/images/proceso_ingredientes.png",
+      img: "/images/proceso_ingredientes.webp",
       color: "text-totto-pistachio bg-totto-pistachio/10 border-totto-pistachio/20",
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,7 +19,7 @@ export default function Proceso() {
       num: "02",
       title: "Mezcla sin Aditivos",
       desc: "Combinamos todo a mano sin bases industriales, estabilizantes químicos ni saborizantes artificiales.",
-      img: "/images/proceso_mezcla.png",
+      img: "/images/proceso_mezcla.webp",
       color: "text-totto-red bg-totto-red/10 border-totto-red/20",
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,7 +31,7 @@ export default function Proceso() {
       num: "03",
       title: "Maduración en Frío",
       desc: "Reposo controlado a baja temperatura durante 12-24 horas para potenciar la intensidad del sabor real.",
-      img: "/images/proceso_maduracion.png",
+      img: "/images/proceso_maduracion.webp",
       color: "text-[#5c3d2e] bg-[#5c3d2e]/10 border-[#5c3d2e]/20",
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,7 +43,7 @@ export default function Proceso() {
       num: "04",
       title: "Resultado Cremoso",
       desc: "Mantecamos lentamente inyectando mínimo aire para lograr la densidad y textura italiana perfecta.",
-      img: "/images/proceso_mantecacion.png",
+      img: "/images/proceso_mantecacion.webp",
       color: "text-totto-honey bg-totto-honey/10 border-totto-honey/20",
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,20 +54,26 @@ export default function Proceso() {
   ];
 
   return (
-    <section id="proceso" className="py-20 relative overflow-hidden bg-[#fbf7e6] border-t border-totto-red/10">
+    <section id="proceso" className="snap-section py-20 relative overflow-hidden bg-[#fbf7e6] border-t border-totto-red/10">
       {/* Background Image overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Mobile Background: vertical */}
-        <img
-          src="/images/FondoGelatoMB.png"
-          alt="Fondo Gelato Móvil"
-          className="block md:hidden w-full h-full object-cover opacity-[0.55]"
+        <Image
+          src="/images/FondoGelatoMB.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="block md:hidden object-cover opacity-[0.55]"
         />
         {/* Desktop Background: landscape */}
-        <img
-          src="/images/FondoGelato.png"
-          alt="Fondo Gelato"
-          className="hidden md:block w-full h-full object-cover opacity-[0.55]"
+        <Image
+          src="/images/FondoGelato.webp"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="hidden md:block object-cover opacity-[0.55]"
         />
         <div className="absolute inset-0 bg-[#fbf7e6]/50 mix-blend-overlay" />
       </div>
@@ -74,7 +81,7 @@ export default function Proceso() {
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16" data-reveal>
           <span className="text-totto-red font-bold uppercase tracking-widest text-xs">
             Así lo hacemos
           </span>
@@ -87,7 +94,7 @@ export default function Proceso() {
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 relative">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 relative" data-reveal-stagger>
           {pasos.map((paso, index) => (
             <div
               key={paso.num}
@@ -111,10 +118,12 @@ export default function Proceso() {
 
                 {/* Styled Image Container */}
                 <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-totto-cream-dark/20 border border-totto-red/5 mb-6">
-                  <img
+                  <Image
                     src={paso.img}
                     alt={paso.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
+                    className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
                   />
                 </div>
 
@@ -131,7 +140,7 @@ export default function Proceso() {
         </div>
 
         {/* Call to action to learn more */}
-        <div className="text-center mt-12 relative z-10">
+        <div className="text-center mt-12 relative z-10" data-reveal>
           <Link
             href="/nosotros#metodo-artesanal"
             className="inline-flex items-center gap-2 rounded-full bg-totto-red px-8 py-3.5 text-sm font-bold text-totto-cream hover:bg-totto-red-light transition-all duration-300 hover:scale-105 active:scale-95 shadow-md border border-totto-red/10"

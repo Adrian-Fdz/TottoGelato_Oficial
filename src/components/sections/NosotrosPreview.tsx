@@ -1,17 +1,17 @@
-import Link from "next/link";
+import Link from "@/components/ui/TransitionLink";
 import Image from "next/image";
 
 export default function NosotrosPreview() {
   return (
-    <section id="nosotros" className="py-20 bg-totto-white">
+    <section id="nosotros" className="snap-section py-20 bg-totto-white">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
           {/* LEFT COLUMN: TOTTO THE MASCOT IMAGE */}
-          <div className="lg:col-span-5 relative">
+          <div className="lg:col-span-5 relative" data-reveal="left">
             <div className="aspect-square md:aspect-[4/5] max-w-md mx-auto rounded-3xl overflow-hidden shadow-lg border border-totto-red/10 relative group bg-totto-cream/20">
               <Image
-                src="/images/Totto-Perfil.png"
+                src="/images/Totto-Perfil.webp"
                 alt="Totto, el San Bernardo de 10 años que inspiró la heladería"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -19,14 +19,21 @@ export default function NosotrosPreview() {
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-              <span className="absolute bottom-6 left-6 inline-flex items-center rounded-full bg-totto-red px-4 py-1.5 text-xs font-bold text-totto-cream shadow">
-                🐾 Conoce al CEO (Totto)
+              <span className="absolute bottom-6 left-6 inline-flex items-center gap-2 rounded-full bg-totto-red px-4 py-1.5 text-xs font-bold text-totto-cream shadow">
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <ellipse cx="6.5" cy="9" rx="2.1" ry="2.7" />
+                  <ellipse cx="17.5" cy="9" rx="2.1" ry="2.7" />
+                  <ellipse cx="10.2" cy="5.2" rx="2" ry="2.6" />
+                  <ellipse cx="13.8" cy="5.2" rx="2" ry="2.6" />
+                  <path d="M12 12.4c2.7 0 5.4 2.1 5.4 4.6 0 1.9-1.5 2.9-3.2 2.9-.9 0-1.5-.3-2.2-.3s-1.3.3-2.2.3c-1.7 0-3.2-1-3.2-2.9 0-2.5 2.7-4.6 5.4-4.6Z" />
+                </svg>
+                Conoce al CEO (Totto)
               </span>
             </div>
           </div>
 
           {/* RIGHT COLUMN: HISTORIA DE TOTTO Y FILOSOFÍA */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6" data-reveal="right">
             <span className="text-totto-red font-bold uppercase tracking-widest text-xs">
               La Inspiración Detrás de la Marca
             </span>

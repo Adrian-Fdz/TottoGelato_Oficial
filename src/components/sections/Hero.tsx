@@ -1,15 +1,15 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/ui/TransitionLink";
 
 export default function Hero() {
   return (
     <section className="relative flex w-full min-h-[720px] md:min-h-[420px] md:h-[44.25vw] max-h-[720px] items-start md:items-center overflow-hidden border-b border-totto-red/10">
 
-      {/* Background Image (Desktop: Hero.png, Mobile: HeroMobile.png) */}
+      {/* Background Image (Desktop: Hero.webp, Mobile: HeroMobile.webp) */}
       <div className="absolute inset-0 z-0">
         {/* Mobile Background: Taller vertical image, centered */}
         <Image
-          src="/images/HeroMobile.png"
+          src="/images/HeroMobile.webp"
           alt="Fondo oficial Totto Gelato Móvil"
           fill
           priority
@@ -18,7 +18,7 @@ export default function Hero() {
         />
         {/* Desktop Background: Landscape image, right-bottom aligned */}
         <Image
-          src="/images/Hero.png"
+          src="/images/Hero.webp"
           alt="Fondo oficial Totto Gelato"
           fill
           priority
@@ -33,7 +33,7 @@ export default function Hero() {
 
           {/* BRAND PILL (Only desktop) */}
           <span className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-[#690d0d]/90 px-4 py-1.5 text-xs font-bold italic tracking-wider text-totto-cream border border-white/20 shadow-md">
-            "De la Florencia a la Narvarte"
+            &quot;De la Florencia a la Narvarte&quot;
           </span>
 
           <h1 className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white lg:leading-tight drop-shadow-md text-center md:text-left">
