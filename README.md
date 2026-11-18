@@ -12,7 +12,7 @@ Sitio web oficial de **Totto Gelato**, gelatería artesanal ubicada en la coloni
 - **Testimonios** con sistema de rotación automática, selector de reseñas y estadísticas verificadas
 - **Sección Instagram** con mockup de teléfono, grid de publicaciones y hashtags flotantes animados
 - **Mapa y contacto** con integración de Google Maps, estado de apertura en tiempo real y accesos directos a WhatsApp
-- **Newsletter** con formulario reactivo y validación
+- **Newsletter** con formulario reactivo y validación (solo en el cliente, aún sin backend)
 - **Scroll-to-top** dinámico con animación de entrada/salida
 - **Diseño responsive** optimizado para móvil, tablet y desktop
 - **Micro-animaciones** y transiciones suaves a lo largo de toda la experiencia
@@ -21,7 +21,7 @@ Sitio web oficial de **Totto Gelato**, gelatería artesanal ubicada en la coloni
 
 | Tecnología | Uso |
 |---|---|
-| **Next.js 15** | Framework React con App Router y SSR |
+| **Next.js 16** | Framework React con App Router (páginas estáticas) |
 | **TypeScript** | Tipado estático |
 | **Tailwind CSS v4** | Estilos utilitarios y sistema de diseño |
 | **Oswald + Poppins** | Tipografía (Google Fonts via `next/font`) |
@@ -35,6 +35,8 @@ src/
 │   ├── page.tsx              # Página principal
 │   ├── nosotros/page.tsx     # Página "Nosotros"
 │   ├── sabores/page.tsx      # Catálogo de sabores
+│   ├── robots.ts / sitemap.ts # SEO
+│   ├── not-found.tsx         # Página 404
 │   ├── globals.css           # Variables de diseño y animaciones
 │   └── layout.tsx            # Layout raíz con Header/Footer
 ├── components/
@@ -57,7 +59,9 @@ src/
 │           ├── MetodoArtesanal.tsx
 │           ├── MisionVisionValores.tsx
 │           └── AboutCTA.tsx
-└── public/images/             # Assets e imágenes
+└── public/images/             # Imágenes optimizadas (.webp)
+
+Los PNG originales viven en `public/images/originals/` (ignorados por git).
 ```
 
 ## 🎨 Paleta de Marca
@@ -82,6 +86,7 @@ npm run dev
 
 # Build de producción
 npm run build
+npm start
 ```
 
 Abre [http://localhost:3000](http://localhost:3000) en tu navegador.

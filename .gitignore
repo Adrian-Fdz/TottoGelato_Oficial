@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# originales sin optimizar (fuente de diseño, no se publican)
+/public/images/originals/

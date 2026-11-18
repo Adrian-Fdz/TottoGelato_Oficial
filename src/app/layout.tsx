@@ -19,10 +19,29 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  title: "Totto Gelato | Gelatería Artesanal en CDMX",
+  metadataBase: new URL("https://tottogelato.mx"),
+  title: {
+    default: "Totto Gelato | Gelatería Artesanal en CDMX",
+    template: "%s",
+  },
   description: "Descubre el auténtico gelato artesanal en CDMX. Sabores únicos hechos con ingredientes frescos y pasión. Visítanos en nuestra tienda física o contáctanos.",
   icons: {
     icon: "/FaviWebi.svg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_MX",
+    siteName: "Totto Gelato",
+    url: "/",
+    title: "Totto Gelato | Gelatería Artesanal en CDMX",
+    description: "Gelato artesanal elaborado en lotes pequeños con frutas frescas e ingredientes de Italia. Vértiz Narvarte, CDMX.",
+    images: [{ url: "/images/LogoHeader.webp", alt: "Totto Gelato" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Totto Gelato | Gelatería Artesanal en CDMX",
+    description: "Gelato artesanal elaborado en lotes pequeños con frutas frescas e ingredientes de Italia.",
+    images: ["/images/LogoHeader.webp"],
   },
 };
 
