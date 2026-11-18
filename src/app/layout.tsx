@@ -4,6 +4,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/ui/PageTransition";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -85,6 +87,7 @@ export default function RootLayout({
         <PageTransition>{children}</PageTransition>
         <Footer />
         <ScrollReveal />
+        <SmoothScroll />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

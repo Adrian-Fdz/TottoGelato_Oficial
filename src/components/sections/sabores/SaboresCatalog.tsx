@@ -170,7 +170,7 @@ export default function SaboresCatalog() {
             </button>
 
             {/* Modal Body Container with scroll */}
-            <div className="overflow-y-auto flex-1 flex flex-col md:flex-row">
+            <div data-lenis-prevent className="overflow-y-auto flex-1 flex flex-col md:flex-row">
               {/* Left Column: Image in aspect-square for mobile, full height relative for desktop */}
               <div className="relative w-full md:w-1/2 aspect-square md:aspect-auto md:min-h-full bg-totto-cream-dark/15 border-b md:border-b-0 md:border-r border-[#E5E5E5]">
                 <Image

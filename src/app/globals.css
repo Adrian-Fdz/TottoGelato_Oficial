@@ -185,7 +185,7 @@ html {
      out of sections snap. The flavour catalog is one long grid, and with
      nothing to snap to along the way "mandatory" would drag the reader
      straight to the footer. */
-  html[data-snap="sections"] {
+  html[data-snap="sections"]:not(.lenis) {
     scroll-snap-type: y proximity;
   }
 

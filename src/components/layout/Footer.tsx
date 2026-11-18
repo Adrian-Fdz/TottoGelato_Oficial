@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "@/components/ui/TransitionLink";
+import { scrollToTop } from "@/components/ui/SmoothScroll";
 
 export default function Footer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,10 +51,6 @@ export default function Footer() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
