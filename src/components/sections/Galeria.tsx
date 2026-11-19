@@ -13,17 +13,17 @@ export default function Galeria() {
     { src: "/images/jj.webp", alt: "Detalle de vasos y helado", width: 1122, height: 1402 },
     { src: "/images/Hero.webp", alt: "Local y ambiente Narvarte", width: 1633, height: 700 },
     { src: "/images/GelatoMain.webp", alt: "Copa de gelato servida", width: 1086, height: 1024 },
-    { src: "/images/sabores/FlavorMock.webp", alt: "Sabores de temporada", width: 1254, height: 1254 },
-    { src: "/images/jj.webp", alt: "Tradición Totto Gelato", width: 1122, height: 1402 }
+    { src: "/images/galeria_manos_gelato.webp", alt: "Cono y vaso de gelato Totto: gelato para tu alma", width: 720, height: 900 },
+    { src: "/images/galeria_gelato_huella.webp", alt: "Gelato con huellita de chocolate sobre cono", width: 675, height: 900 }
   ];
 
   const row2: GalleryItem[] = [
-    { src: "/images/jj.webp", alt: "Nuestros productos e insumos", width: 1122, height: 1402 },
+    { src: "/images/galeria_perro_totto.webp", alt: "Totto, el san bernardo de la casa, con su peluche", width: 707, height: 900 },
     { src: "/images/GelatoMain.webp", alt: "Gelato de fruta 100% natural", width: 1086, height: 1024 },
     { src: "/images/sabores/FlavorMock.webp", alt: "Elaboración en la tienda", width: 1254, height: 1254 },
     { src: "/images/Hero.webp", alt: "Fachada e iluminación", width: 1633, height: 700 },
     { src: "/images/jj.webp", alt: "Detalles y cucharas", width: 1122, height: 1402 },
-    { src: "/images/GelatoMain.webp", alt: "Tradición italiana", width: 1086, height: 1024 }
+    { src: "/images/galeria_cobertura_ferrero.webp", alt: "Gelato con cobertura de Ferrero, desde Florencia a la Narvarte", width: 720, height: 900 }
   ];
 
   // Both marquee rows render each list twice so the loop is seamless. The

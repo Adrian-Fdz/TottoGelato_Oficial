@@ -204,8 +204,8 @@ export default function Encuentranos() {
           <div className="md:col-span-2 overflow-hidden rounded-3xl h-64 md:h-[400px] relative group border border-white/5 shadow-md">
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 z-10"></div>
             <Image
-              src="/images/local_fachada.webp"
-              alt="Fachada de Totto Gelato en CDMX"
+              src="/images/local_mostrador.webp"
+              alt="Mostrador y vitrinas de gelato en Totto Gelato, CDMX"
               fill
               sizes="(min-width: 768px) 60vw, 100vw"
               className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-105"
